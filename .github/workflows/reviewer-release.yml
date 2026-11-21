@@ -1,0 +1,64 @@
+name: Build reviewer installers
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Preview release tag
+        required: true
+        default: v0.2.0-preview
+permissions:
+  contents: write
+concurrency:
+  group: reviewer-installers
+  cancel-in-progress: false
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          [[ "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+-preview$ ]]
+          if ! gh release view "$VERSION" >/dev/null 2>&1; then
+            gh release create "$VERSION" --draft --prerelease --target "$GITHUB_SHA" --title "Собрано — локальный установщик (preview)" --notes "Готовые CPU-образы с моделью и собранный Figma-плагин. Нативный запуск в Figma Desktop ещё не подтверждён. Инструкция внутри ZIP."
+          fi
+  build:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-24.04
+            arch: amd64
+          - runner: ubuntu-24.04-arm
+            arch: arm64
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - name: Build and verify offline CPU runtime
+        env:
+          ARCH: ${{ matrix.arch }}
+        run: |
+          set -euo pipefail
+          TAG="sobrano-review:${GITHUB_SHA::12}-$ARCH"
+          docker build --target reviewer -t "$TAG" .
+          docker run -d --name reviewer-test --network none "$TAG"
+          trap 'docker logs reviewer-test; docker rm -f reviewer-test' EXIT
+          for step in $(seq 1 60); do
+            if docker exec reviewer-test python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:18763/health')"; then break; fi
+            sleep 2
+          done
+          docker cp tests/model_smoke.py reviewer-test:/tmp/model_smoke.py
+          docker exec reviewer-test python /tmp/model_smoke.py
+          docker cp reviewer-test:/app/dist ./dist
+          python3 -m unittest discover -s tests -p test_installer.py
+          docker save "$TAG" | gzip -1 > /tmp/sobrano-image.tar.gz
+          python3 scripts/package-reviewer.py --image /tmp/sobrano-image.tar.gz --tag "$TAG" --arch "$ARCH"
+      - name: Upload installers to draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          VERSION: ${{ inputs.version }}
+        run: gh release upload "$VERSION" dist/reviewer/* --clobber

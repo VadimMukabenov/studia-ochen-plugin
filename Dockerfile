@@ -8,7 +8,7 @@ COPY scripts ./scripts
 COPY tests/*.test.cjs ./tests/
 RUN npm test && npm run check && npm run build
 
-FROM python:3.12-slim-bookworm
+FROM python:3.12-slim-bookworm AS runtime
 ENV PIP_DEFAULT_TIMEOUT=180 PIP_RETRIES=8 PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 SOB_BIND=0.0.0.0 SOB_MODEL_DIR=/models
 WORKDIR /app
 COPY helper/requirements.txt ./helper/requirements.txt
@@ -19,3 +19,11 @@ COPY examples ./examples
 USER sobrano
 EXPOSE 18763
 CMD ["sh","-c","python -m helper.download_model && python -m helper.server"]
+
+# Reviewer distribution: model is already inside the image, no runtime download.
+FROM runtime AS reviewer
+USER root
+ENV SOB_MODEL_DIR=/opt/sobrano-model
+RUN mkdir /opt/sobrano-model && chown sobrano /opt/sobrano-model
+USER sobrano
+RUN python -m helper.download_model

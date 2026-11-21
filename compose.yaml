@@ -3,6 +3,7 @@ services:
   sobrano:
     build:
       context: .
+      target: runtime
       network: host
     ports:
       - "127.0.0.1:18763:18763"
