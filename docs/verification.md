@@ -8,7 +8,7 @@
 - Три SVG из оригинальных L exports с provenance созданы; отрендерены Chromium и визуально просмотрены PNG. 80/212/222 paths, без image/foreignObject/data:image. Это offline-примеры, не запуск нативного плагина.
 - Аудит Figma40оригиналов ранее подтверждён MCP в аккаунте Vadim. Во время сборки примеров MCP ответил «tool call limit on Starter». Новые native сцены НЕ созданы, т.к. мутация отклонена лимитом. Платный upgrade не выполнялся. Скрипт native API покрыт sandbox double, однако запуск plugin UI → реальные native layers → SVG **ещё не подтверждён в Figma Desktop**.
 - Docker clean build, первый старт с пустым model volume, реальные HTTP-запросы и перезапуск подтверждены; см. результаты ниже.
-- Windows/macOS Docker Desktop не проверялись. Открыть private source работодателю и импортировать manifest в его Figma должен человек; работодателю ничего не отправляли и сроки не принимали.
+- Windows/macOS Docker Desktop не проверялись. Импортировать manifest в свою Figma должен проверяющий; работодателю ничего не отправляли и сроки не принимали.
 
 Итог ревью: независимый reviewer gpt-6.1-sol, два Important finding. Cross-palette и целостность выходных потомков исправлены, regression RED→GREEN. Source baseline фиксируется только при первом использовании; модификации исходной библиотеки до этого не распознаются полностью. Требуется неизменённая копия. Итог текущих suites:21 Node,4 Playwright,8 Python проходят. Неоднозначные общие цвета разных схем явно отклоняются. Нет отложенных Minor findings.
 Официальный classic plugin development-import требует macOS/Windows Desktop (Figma Help). Linux-проверка ниже — исключительно Docker/model/browser UI, не запуск плагина в официальном Linux Desktop (такого окружения здесь не проверяли).
@@ -25,4 +25,4 @@
 
 ## Публикация в отдельном GitHub, 22 ноября 2026
 
-Репозиторий `VadimMukabenov/studia-ochen-plugin`, private, main. История career-search и внутренние план/ledger не переносились. Чистый клон исходного коммита f59c61e в новую папку успешно собран/запущен через `docker compose up --build -d`; настоящий HTTP/model smoke test10/10 и ZIP/SVG проверки прошли с существующим Docker-кэшем модели. Нативные Figma ограничения выше сохраняются.
+Репозиторий `VadimMukabenov/studia-ochen-plugin`, main; сначала создан private, затем 22 ноября по прямому запросу владельца переведён в public. История career-search и внутренние план/ledger не переносились. Чистый клон исходного коммита f59c61e в новую папку успешно собран/запущен через `docker compose up --build -d`; настоящий HTTP/model smoke test10/10 и ZIP/SVG проверки прошли с существующим Docker-кэшем модели. Нативные Figma ограничения выше сохраняются.

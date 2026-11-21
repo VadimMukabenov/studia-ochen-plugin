@@ -44,7 +44,7 @@ docker compose up --build
 - `source/catalog.json`: точные 40 source ID, размеры и 3 исходные палитры. Один общий коэффициент масштабирования; S и L различаются реальными исходниками. Количество предметов при создании — до 4, после дублирования — до 12.
 - `Dockerfile`/`compose.yaml`: Node-сборка плагина и Python CPU-runtime. Веса отдельно в volume, непривилегированный пользователь, loopback-порт, healthcheck, без API-ключей и журналирования запросов.
 
-Модель [intfloat/multilingual-e5-small](https://huggingface.co/intfloat/multilingual-e5-small), MIT, revision `614241f622f53c4eeff9890bdc4f31cfecc418b3`. Официальные ONNX-веса, SHA256 весов и токенизатора проверяются при скачивании. Реализация pooling/prefixes соответствует model card. Model card сохраняется в кэше. Иллюстрации принадлежат авторам задания; материалы и исходники хранятся в приватном репозитории, публичная публикация не выполнялась.
+Модель [intfloat/multilingual-e5-small](https://huggingface.co/intfloat/multilingual-e5-small), MIT, revision `614241f622f53c4eeff9890bdc4f31cfecc418b3`. Официальные ONNX-веса, SHA256 весов и токенизатора проверяются при скачивании. Реализация pooling/prefixes соответствует model card. Model card сохраняется в кэше. Иллюстрации принадлежат авторам задания. Репозиторий решения публичный; его можно клонировать без приглашения.
 
 ## Примеры и доказательства
 
