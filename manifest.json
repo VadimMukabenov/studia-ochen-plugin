@@ -1,0 +1,14 @@
+{
+  "name": "Собрано · Конструктор иллюстраций",
+  "api": "1.0.0",
+  "editorType": ["figma"],
+  "main": "code.js",
+  "ui": "ui.html",
+  "documentAccess": "dynamic-page",
+  "relaunchButtons": [{"command":"open","name":"Открыть Собрано","multipleSelection":false}],
+  "networkAccess": {
+    "allowedDomains": ["none"],
+    "devAllowedDomains": ["http://127.0.0.1:18763"],
+    "reasoning": "Local CPU semantic search in development; no remote API or artwork uploads."
+  }
+}

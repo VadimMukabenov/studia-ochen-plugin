@@ -1,0 +1,4 @@
+const fs=require('node:fs'),vm=require('node:vm'),ts=require('typescript');const ctx=vm.createContext({});
+vm.runInContext(ts.transpileModule(fs.readFileSync('code.ts','utf8'),{compilerOptions:{target:ts.ScriptTarget.ES2018}}).outputText+';globalThis.core=SobCore',ctx);
+const specs=[{name:'Учиться новому',query:'Учиться новому каждый день',keys:['book','lamp','pen'],size:'L',width:1000,height:1000,layout:'compact',backgrounds:true,palette:0},{name:'Телефон и пазлы',query:'Телефон, пазлы',keys:['phone','puzzle'],size:'S',width:1200,height:630,layout:'diagonal',backgrounds:false,palette:1},{name:'Копить на мечту',query:'Копить на мечту',keys:['coin','wallet','flowers'],size:'L',width:800,height:1200,layout:'compact',backgrounds:true,palette:2}];
+fs.writeFileSync('examples/plans.json',JSON.stringify(specs.map(s=>({...s,colors:ctx.core.palettes[s.palette].colors,plan:ctx.core.plan(s.keys,s.size,s.width,s.height,s.layout,s.backgrounds)})),null,2));

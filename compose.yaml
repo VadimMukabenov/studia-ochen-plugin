@@ -1,0 +1,25 @@
+name: sobrano
+services:
+  sobrano:
+    build:
+      context: .
+      network: host
+    ports:
+      - "127.0.0.1:18763:18763"
+    volumes:
+      - model-cache:/models
+    init: true
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:18763/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 15m
+    restart: "no"
+volumes:
+  model-cache:
+
+networks:
+  default:
+    driver_opts:
+      com.docker.network.driver.mtu: "1280"

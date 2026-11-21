@@ -1,0 +1,7 @@
+{
+  "name": "Вечерняя",
+  "background": ["#E4DCF4", "#B8A8DC", "#7C69B2"],
+  "objects": ["#F7D99C", "#EFA7B8", "#D5EBED"],
+  "ink": "#211B2B",
+  "paper": "#FFFFFF"
+}
