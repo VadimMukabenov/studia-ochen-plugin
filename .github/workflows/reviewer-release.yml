@@ -1,8 +1,5 @@
 name: Build reviewer installers
 on:
-  push:
-    branches: [feat/reviewer-installer]
-    paths: ['.github/workflows/reviewer-release.yml', 'Dockerfile', 'helper/**', 'installer/**', 'scripts/package-reviewer.py', 'tests/test_installer.py']
   workflow_dispatch:
     inputs:
       version:
@@ -18,15 +15,13 @@ jobs:
   prepare:
     runs-on: ubuntu-24.04
     steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - run: python3 -m unittest discover -s tests -p test_release_safety.py
       - env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
           VERSION: ${{ inputs.version || 'v0.2.0-preview' }}
-        run: |
-          [[ "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+-preview$ ]]
-          if ! gh release view "$VERSION" >/dev/null 2>&1; then
-            gh release create "$VERSION" --draft --prerelease --target "$GITHUB_SHA" --title "Собрано — локальный установщик (preview)" --notes "Готовые CPU-образы с моделью и собранный Figma-плагин. Нативный запуск в Figma Desktop ещё не подтверждён. Инструкция внутри ZIP."
-          fi
+        run: sh scripts/prepare-reviewer-release.sh "$VERSION"
   build:
     needs: prepare
     strategy:
