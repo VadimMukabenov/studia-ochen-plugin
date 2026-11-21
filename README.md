@@ -2,28 +2,35 @@
 
 Тестовое Студии Очень. Плагин Figma собирает редактируемые иллюстрации из предоставленной библиотеки; локальная CPU-модель подбирает предметы по смыслу. Без платных API, GPU, аренды серверов и Figma AI credits.
 
-## Проверяющему: запуск одной командой
+## Проверяющему: готовый комплект
 
-Нужны **Docker Desktop с Docker Compose** (Linux: Docker Engine + Compose v2), **Figma Desktop для macOS/Windows**, редактируемая копия исходной библиотеки. Достаточно CPU, рекомендуем 4 ГБ свободной RAM и 2 ГБ диска для контейнера/модели. Контейнер проверен на Linux amd64; это не проверка нативного плагина на Linux. Официальный development-import Figma требует Desktop для macOS/Windows ([инструкция Figma](https://help.figma.com/hc/en-us/articles/360042786733-Create-a-classic-plugin-for-development)). Windows/macOS Docker Desktop ещё не проверены.
+**[Скачать для Windows / Linux x64 / Intel Mac](https://github.com/VadimMukabenov/studia-ochen-plugin/releases/download/v0.2.0-preview/sobrano-amd64.zip)** · **[Скачать для Apple Silicon / Linux ARM64](https://github.com/VadimMukabenov/studia-ochen-plugin/releases/download/v0.2.0-preview/sobrano-arm64.zip)** · [все файлы и SHA256](https://github.com/VadimMukabenov/studia-ochen-plugin/releases/tag/v0.2.0-preview).
 
-Клонируйте этот репозиторий и откройте его каталог:
+Это preview-комплект: локальная модель и контейнер проверены на обеих CPU-архитектурах Linux; **полный запуск плагина в Figma Desktop ещё не подтверждён**. Не выдаём проверку контейнера за проверку самого плагина.
+
+Нужен установленный и запущенный **Docker Desktop с Compose v2** (Linux: Docker Engine + Compose v2). Для создания иллюстраций — **Figma Desktop для macOS/Windows** и собственная редактируемая полная копия исходной библиотеки. Рекомендуется 4 ГБ свободной RAM и 4 ГБ диска, включая архив и образ. Windows/macOS Docker Desktop и нативные launchers на этих ОС пока не проверены. Windows ARM не проверен.
+
+1. Скачайте подходящий ZIP (около **427–434 МБ**) и распакуйте **весь архив**.
+2. Windows: запустите `START.cmd`. macOS/Linux: `START.command` либо одна команда в распакованной папке — `sh START.command`.
+3. Дождитесь `Ready`. Откроется **http://127.0.0.1:18763**; при необходимости откройте адрес вручную. Git, Node, Python, сборка, API-ключи и отдельное скачивание модели не нужны. Модель уже в образе; после получения ZIP её запуск работает без сети.
+4. **Один раз в Figma Desktop:** Plugins → Development → Import plugin from manifest… → выберите **`plugin/manifest.json` прямо из этого комплекта**. Дополнительно скачивать плагин с локальной страницы не нужно.
+5. Откройте свою полную копию исходной библиотеки. Если доступ к исходнику только на просмотр: меню имени файла → **Duplicate to your drafts**, затем откройте дубликат. Editor-доступ к оригиналу не нужен; плагин редактирует вашу копию. Plugins → Development → «Собрано».
+
+При повторном запуске достаточно `docker compose up -d --wait` в той же папке. Остановка: `STOP.cmd` / `sh STOP.command` или `docker compose down`. Порт 18763 должен быть свободен. При ошибке запуска: `docker compose logs`. Помощник доступен только с этого компьютера. Figma и сама библиотека требуют обычного сетевого доступа отдельно от локальной модели.
+
+[Источник библиотеки](https://www.figma.com/design/4MCFttsSoP7hgQh29zq5G3/) · [рабочая копия автора](https://www.figma.com/design/Iz8d57EHdCVyPSDO0ukSnb/). В пустом Figma-файле исходных групп нет. Нужен полный неизменённый дубликат: при копировании отдельных групп их ID меняются. Структура исходников запоминается при первом использовании; правки, сделанные до этого, полностью распознать нельзя. Официальный development-import требует [Figma Desktop macOS/Windows](https://help.figma.com/hc/en-us/articles/360042786733-Create-a-classic-plugin-for-development). Публикация в Community не требуется.
+
+## Запуск из исходников
+
+Для разработчика или самостоятельной пересборки, с установленным Git и Docker:
 
 ```sh
 git clone https://github.com/VadimMukabenov/studia-ochen-plugin.git
 cd studia-ochen-plugin
-```
-
-Запуск приложения:
-
-```sh
 docker compose up --build
 ```
 
-Первый запуск скачает образы, зависимости и примерно 488 МБ модели с токенизатором; нужен интернет. Дождитесь `Ready: http://127.0.0.1:18763`. Откройте **http://127.0.0.1:18763** — там проверка модели, ZIP плагина и инструкция. При повторном запуске веса берутся из постоянного Docker volume; запросы не требуют сети. Модель работает на CPU, CUDA не устанавливается.
-
-**Один раз:** скачайте и распакуйте ZIP со страницы, в Figma Desktop выберите Plugins → Development → Import plugin from manifest… и укажите `manifest.json`. Это ручная установка Figma, Docker её не выполняет. Откройте [копию с библиотекой](https://www.figma.com/design/Iz8d57EHdCVyPSDO0ukSnb/) с editor-доступом или собственный дубликат в Drafts. Затем Plugins → Development → «Собрано». В чужом пустом файле исходных групп нет, поэтому создание будет отклонено с объяснением. Используйте неизменённую полную копию: структура исходников запоминается при первом использовании, правки до этого момента автоматически распознать нельзя. При копировании всего файла Figma сохраняет исходные ID; при копировании отдельных групп в пустой файл ID меняются.
-
-Остановка: `docker compose down`. Модель остаётся в volume. `docker compose down -v` удаляет кэш и потребует повторного скачивания. Сервис доступен только с этого компьютера на порту 18763. Порт должен быть свободен. Плагин запускается в development-режиме, публикация в Community не требуется.
+Здесь первый запуск скачает образы, зависимости и примерно 488 МБ модели с токенизатором. В отличие от готового комплекта, нужен интернет и время на сборку. Модель кэшируется в Docker volume; `docker compose down -v` удаляет этот кэш. Контейнер не устанавливает CUDA. Сборка установщиков воспроизводится workflow `Build reviewer installers`; каждый выпуск получает версию, опубликованные архивы не перезаписываются.
 
 ## Как проверять
 

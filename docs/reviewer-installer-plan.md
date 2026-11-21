@@ -8,11 +8,13 @@ Constraints: no paid services; no source vector changes; model behavior unchange
 
 Review focus: missing Docker/daemon; spaces in paths; occupied port; architecture mismatch; offline startup without a preexisting model volume.
 
-- [ ] Add an archive packaging test: compiled plugin, model image, Compose image reference, executable shell launcher, no development caches/secrets.
-- [ ] Implement package script and simple Windows / macOS / Linux launchers with useful failure instructions. Do not change execution policy or install tools automatically.
-- [ ] Add an image target containing the verified model; retain source-build Compose for development.
-- [ ] Build and smoke-test both architectures in GitHub Actions, publish draft release assets, then publish only after successful builds.
-- [ ] Verify a fresh extracted archive and offline model request; verify anonymous download and checksums.
-- [ ] Update README with direct installer links, actual prerequisites, native Figma limitation, and separate developer commands.
+- [x] Add an archive packaging test: compiled plugin, model image, Compose image reference, executable shell launcher, no development caches/secrets.
+- [x] Implement package script and simple Windows / macOS / Linux launchers with useful failure instructions. Do not change execution policy or install tools automatically.
+- [x] Add an image target containing the verified model; retain source-build Compose for development.
+- [x] Build and smoke-test both architectures in GitHub Actions, publish draft release assets, then publish only after successful builds.
+- [x] Verify a fresh extracted archive and offline model request; verify anonymous download and checksums.
+- [x] Update README with direct installer links, actual prerequisites, native Figma limitation, and separate developer commands.
+
+Evidence: docs/verification.md, Actions run 44952509351. Release v0.2.0-preview contains images built from 24129cf. Subsequent release-preparation safety fix a089688 has three passing regression cases and a second read-only review. Linux extracted-archive launcher works from a path with spaces. Windows/macOS native and Figma runtime remain explicitly unverified.
 
 Decision: prefer release archives over GHCR for this installer. GHCR initially creates private packages and requires a separate manual visibility change. A public release gives anonymous downloads directly under the already authorized public repository.
