@@ -63,7 +63,9 @@ Scoped exception explicitly requested by the user on 22 November: acquire a sepa
 
 Files: Dockerfile, installer packaging, README.md, docs/verification.md, final examples and demo.
 
-- [ ] Ship the real editor and all 40 assets in the existing offline image/Compose package.
-- [ ] Verify both architecture builds and downloaded archive startup; record platform limitations honestly.
-- [ ] Record a short complete editor demo and three SVG examples from the app; fresh final review and fixes.
-- [ ] Publish the working public source/release and update private career tracking without touching other work.
+- [x] Ship the real editor and all 40 assets in the existing offline image/Compose package.
+- [x] Verify both architecture builds and downloaded archive startup; record platform limitations honestly.
+- [x] Record a short complete editor demo and three SVG examples from the app; fresh final review and fixes.
+- [x] Publish the working public source/release and update private career tracking without touching other work.
+
+Completed22November2026: runtime source46022d0, publicv0.3.0, nativebuildrun45014121227 success, downloadedAMD64launcher11.93sec+11/11HTTP+browserAI→SVG, publicPagesexportpassed. Evidence:docs/evidence/release.json. Independentfinalreview noCritical/Important; knownsemantic/platformlimitations retained inREADME.
