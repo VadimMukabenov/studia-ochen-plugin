@@ -43,11 +43,11 @@ Files: web/index.html, web/styles.css, web/core.mjs, web/app.mjs, tests/web-core
 
 Interfaces: createScene(keys, options), layouts(scene), recolor(scene, palette), exportSvg(scene, assets), validateProject(input). Scene stores family/role/position/rotation and global scale; source geometry never enters user project data.
 
-- [ ] Show three distinct visual editor concepts grounded in the original assets; settle the visual direction before UI implementation.
-- [ ] Pin layout, palette and safe project/export behaviors with failing tests; implement the pure scene core.
-- [ ] Implement object picker, large canvas, three actual layout previews and contextual whole-object controls.
-- [ ] Add undo/redo, local recovery and validated portable JSON projects.
-- [ ] Verify phone + puzzle → three layouts → move/rotate/duplicate/delete/layers → downloaded SVG in the browser, desktop and narrow screen.
+- [x] Show three distinct visual editor concepts grounded in the original assets; settle the visual direction before UI implementation.
+- [x] Pin layout, palette and safe project/export behaviors with failing tests; implement the pure scene core.
+- [x] Implement object picker, large canvas, three actual layout previews and contextual whole-object controls.
+- [x] Add undo/redo, local recovery and validated portable JSON projects.
+- [x] Verify phone + puzzle → three layouts → move/rotate/duplicate/delete/layers → downloaded SVG in the browser, desktop and narrow screen.
 
 ### Task 3: Meaning planner
 

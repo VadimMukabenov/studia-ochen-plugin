@@ -51,6 +51,12 @@ def main():
         ET.ElementTree(svg).write(output / record['asset'], encoding='utf-8', xml_declaration=True)
         records.append({k: record[k] for k in ['key', 'label', 'size', 'role', 'width', 'height', 'sourceNode', 'asset']})
     (output / 'catalog.json').write_text(json.dumps({'variants': records}, ensure_ascii=False, indent=2) + '\n')
+    native = json.loads((ROOT / 'source/catalog.json').read_text())
+    palettes = []
+    for index, palette in enumerate(native['palettes']):
+        colors = ['#' + ''.join(f'{round(c[channel] * 255):02X}' for channel in ['r', 'g', 'b']) for c in palette['colors']]
+        palettes.append({'name': ['Сирень', 'Персик', 'Мята'][index], 'background': colors[:3], 'objects': colors[4:7], 'ink': colors[3], 'paper': colors[7]})
+    (ROOT / 'web/catalog.mjs').write_text('// Generated from reviewed original catalog.\nexport const variants=' + json.dumps(records, ensure_ascii=False) + ';\nexport const palettes=' + json.dumps(palettes, ensure_ascii=False) + ';\n')
     print(f'Extracted {len(records)} original variants without modifying path data')
 
 
