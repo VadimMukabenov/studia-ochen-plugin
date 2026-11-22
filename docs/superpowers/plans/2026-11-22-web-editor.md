@@ -13,7 +13,7 @@
 ## Global constraints
 
 - 10 families × L/S × main/background = 40 original variants; preserve paths and one common scale.
-- No invented illustrations, raster export, competitor code/assets, paid API or reviewer API keys.
+- No invented illustrations, raster export, competitor code/assets, paid API or mandatory reviewer API keys. User authorized an optional free OpenRouter mode on 22 November; local CPU operation remains available without registration.
 - Three original palettes and validated palette import; background uses background slots only.
 - Direct objects → three layouts → whole-object editing → SVG must work before model integration and packaging.
 - Keep the preview release intact until its replacement passes the actual browser workflow.
@@ -28,7 +28,7 @@
 
 ### Task 1: Original library
 
-Files: source/originals/library-{L,S}.svg, source/extraction.json, web/assets/*.svg, scripts/extract-library.py, tests/library.test.cjs.
+Files: source/originals/library-{L,S}.svg, source/extraction.json, web/assets/*.svg, scripts/extract-library.py, tests/test_library.py.
 
 Interface: web/assets/catalog.json enumerates key, label, size, role, native width/height, asset URL and paint-role mapping. Extraction manifest records source SHA256 and direct-child indices.
 
@@ -52,6 +52,8 @@ Interfaces: createScene(keys, options), layouts(scene), recolor(scene, palette),
 ### Task 3: Meaning planner
 
 Files: helper/server.py, helper semantic tests, web/app.mjs.
+
+Scoped exception explicitly requested by the user on 22 November: acquire a separate free OpenRouter key and smoke-test it before UI implementation. Done; see docs/free-cloud-spike.md. This does not complete or reorder the editor/model integration work below. The credential is outside Git and the Docker context; it must never enter a public release or the browser bundle.
 
 - [ ] Record an unseen evaluation set before tuning; include explicit names, mixed intent, exclusions, ambiguous and unsupported requests.
 - [ ] Preserve explicit requested objects, apply supported exclusions, expose uncertainty and keep model errors recoverable.
