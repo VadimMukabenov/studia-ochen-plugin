@@ -1,0 +1,122 @@
+{
+  "date": "2026-11-22",
+  "release": {
+    "assets": [
+      {
+        "browser_download_url": "https://github.com/VadimMukabenov/studia-ochen-plugin/releases/download/v0.3.0/1-learning.svg",
+        "digest": "sha256:c27c9172c2ff2046869eb608b697a4484150a2d6dcf6cbc6ba9cdd1b21eab37a",
+        "name": "1-learning.svg",
+        "size": 61028
+      },
+      {
+        "browser_download_url": "https://github.com/VadimMukabenov/studia-ochen-plugin/releases/download/v0.3.0/2-connection.svg",
+        "digest": "sha256:f6285e682cabe190c60ded1012d360560643f0b7290b4d3dc8be1a7bbfd93969",
+        "name": "2-connection.svg",
+        "size": 104009
+      },
+      {
+        "browser_download_url": "https://github.com/VadimMukabenov/studia-ochen-plugin/releases/download/v0.3.0/3-savings.svg",
+        "digest": "sha256:97c6478ab3cd418e84c0ef5d43c872742e21e4a2f5af358c8bacbf068c1871c1",
+        "name": "3-savings.svg",
+        "size": 116004
+      },
+      {
+        "browser_download_url": "https://github.com/VadimMukabenov/studia-ochen-plugin/releases/download/v0.3.0/editor-demo.gif",
+        "digest": "sha256:07d7727132d41556d3813c07877a895910d0cc0647915ee2c3b005c3c0512b80",
+        "name": "editor-demo.gif",
+        "size": 694102
+      },
+      {
+        "browser_download_url": "https://github.com/VadimMukabenov/studia-ochen-plugin/releases/download/v0.3.0/editor-demo.mp4",
+        "digest": "sha256:169894ac7d275570e61fafe042906ffeb063ade2c8d9d87e95dc02f245f2bba6",
+        "name": "editor-demo.mp4",
+        "size": 378205
+      },
+      {
+        "browser_download_url": "https://github.com/VadimMukabenov/studia-ochen-plugin/releases/download/v0.3.0/sobrano-amd64.zip",
+        "digest": "sha256:6414a9cc985441955c2ba233d7642c681734e6df34ed19a0e8dd0d214a3cd782",
+        "name": "sobrano-amd64.zip",
+        "size": 434697762
+      },
+      {
+        "browser_download_url": "https://github.com/VadimMukabenov/studia-ochen-plugin/releases/download/v0.3.0/sobrano-amd64.zip.sha256",
+        "digest": "sha256:924f8852da9beaaaab5a24fb3eb47c1b3743dea81c43a30107a6c7843411f6bd",
+        "name": "sobrano-amd64.zip.sha256",
+        "size": 84
+      },
+      {
+        "browser_download_url": "https://github.com/VadimMukabenov/studia-ochen-plugin/releases/download/v0.3.0/sobrano-arm64.zip",
+        "digest": "sha256:aa3e8d976b7ffb08a968e483c54080af94ea30b89e70f2864a284927970b47a8",
+        "name": "sobrano-arm64.zip",
+        "size": 427398354
+      },
+      {
+        "browser_download_url": "https://github.com/VadimMukabenov/studia-ochen-plugin/releases/download/v0.3.0/sobrano-arm64.zip.sha256",
+        "digest": "sha256:80a2e2c177a13422086502ea1900388f7b06424565440990ffe6d0e178d45ec2",
+        "name": "sobrano-arm64.zip.sha256",
+        "size": 84
+      },
+      {
+        "browser_download_url": "https://github.com/VadimMukabenov/studia-ochen-plugin/releases/download/v0.3.0/sobrano-source.zip",
+        "digest": "sha256:b661b3744f735294d5340eeeae43242e0ab42b3d8a42de859ff9e53f172a1423",
+        "name": "sobrano-source.zip",
+        "size": 4292003
+      }
+    ],
+    "draft": false,
+    "html_url": "https://github.com/VadimMukabenov/studia-ochen-plugin/releases/tag/v0.3.0",
+    "prerelease": false,
+    "published_at": "2026-11-22T10:53:41Z",
+    "tag_name": "v0.3.0",
+    "target_commitish": "46022d0e9592f84aa62795bd63e444f67704670c"
+  },
+  "buildRun": {
+    "url": "https://github.com/VadimMukabenov/studia-ochen-plugin/actions/runs/45014121227",
+    "headSha": "46022d0e9592f84aa62795bd63e444f67704670c",
+    "nativeLinuxArchitectures": [
+      "amd64",
+      "arm64"
+    ],
+    "conclusion": "success",
+    "offlineNetworkNoneCasesPerArchitecture": 11
+  },
+  "downloadedAmd64": {
+    "sha256": "6414a9cc985441955c2ba233d7642c681734e6df34ed19a0e8dd0d214a3cd782",
+    "checksumMatched": true,
+    "startup": {
+      "exitCode": 0,
+      "seconds": 11.93,
+      "pathWithSpaces": "/tmp/sobrano reviewer v0.3.0 20261122/extracted with spaces/sobrano",
+      "source": "Downloaded GitHub draft release v0.3.0 AMD64 ZIP, SHA verified",
+      "dockerAlreadyRunning": true,
+      "newImageNotPreloaded": true
+    },
+    "initialOpenRouterEnabled": false,
+    "httpModelCasesPassed": 11,
+    "httpModelCasesTotal": 11,
+    "browserFlow": "Local E5 topic → accept proposal → rotate → actual SVG download",
+    "export": {
+      "sha256": "2f53215fdfe735dc3e597f75a63cd28aca8b91ff77a0e35bea66c8cc20c2ff1e",
+      "objects": [
+        "puzzle",
+        "phone"
+      ],
+      "paths": 212,
+      "images": 0,
+      "originalPathStringsVerified": true
+    }
+  },
+  "pages": {
+    "url": "https://vadimmukabenov.github.io/studia-ochen-plugin/",
+    "run": "https://github.com/VadimMukabenov/studia-ochen-plugin/actions/runs/45014637381",
+    "status": "success",
+    "realBrowserObjectsToSvg": "passed",
+    "meaningMode": "Disabled honestly on static demo; full local image includes CPU model"
+  },
+  "limits": [
+    "Docker already running; timing excludes download, Docker installation and ZIP extraction",
+    "Native Windows and macOS launchers not executed on those OS",
+    "Held-out expectations17/18; limited semantic retrieval, not universal command understanding",
+    "Video is a walkthrough of real successive editor states, not continuous cursor recording"
+  ]
+}

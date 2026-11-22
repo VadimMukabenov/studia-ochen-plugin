@@ -26,7 +26,7 @@
 
 ## Доставка
 
-Готовый выпуск v0.3.0 собирается workflow `Build reviewer installers`: отдельные нативные amd64/arm64 Linux runner, тесты, контейнер с `--network none`, модель внутри образа, реальный HTTP/model smoke и упаковка. Итоговый run, SHA и проверка скачанного ZIP записываются в evidence/release.json после завершения сборки.
+Готовый выпуск [v0.3.0](https://github.com/VadimMukabenov/studia-ochen-plugin/releases/tag/v0.3.0) опубликован. [Workflow45014121227](https://github.com/VadimMukabenov/studia-ochen-plugin/actions/runs/45014121227) успешно завершён: `Build reviewer installers`: отдельные нативные amd64/arm64 Linux runner, тесты, контейнер с `--network none`, модель внутри образа, реальный HTTP/model smoke и упаковка. Source SHA46022d0e9592f84aa62795bd63e444f67704670c. Скачанный из GitHub AMD64 ZIP прошёл SHA256; штатный `sh START.command` из папки с пробелами завершился0 за11.93сек с уже работающим Docker. Затем11/11HTTP/model и браузерный локальный AI→принятие→поворот→SVG прошли. Первая установка подтверждена без OpenRouter-ключа. [Метаданные и SHA](evidence/release.json), [реальные ответы скачанного runtime](evidence/downloaded-runtime-smoke.json). Веб-демо опубликовано и проверено до фактического SVG-download в браузере.
 
 Нативные Windows/macOS launchers не запускались на соответствующих ОС. В Linux проверяется тот же CPU-контейнер и shell launcher, включая путь с пробелами. Не обещаем одинаковое время на других машинах. Docker Desktop, скачивание ZIP и распаковка — отдельные действия пользователя.
 
