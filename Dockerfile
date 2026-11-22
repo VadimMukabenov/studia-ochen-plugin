@@ -4,6 +4,7 @@ COPY package.json package-lock.json ./
 RUN npm ci --ignore-scripts --no-audit --no-fund
 COPY code.ts ui.html manifest.json tsconfig.json ./
 COPY source ./source
+COPY web ./web
 COPY scripts ./scripts
 COPY tests/*.test.cjs ./tests/
 RUN npm test && npm run check && npm run build
@@ -14,6 +15,7 @@ WORKDIR /app
 COPY helper/requirements.txt ./helper/requirements.txt
 RUN pip install --no-cache-dir -r helper/requirements.txt && useradd --uid 10001 --create-home sobrano && mkdir /models && chown sobrano /models
 COPY helper ./helper
+COPY web ./web
 COPY --from=plugin /build/dist ./dist
 COPY examples ./examples
 USER sobrano

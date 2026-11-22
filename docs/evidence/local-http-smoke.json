@@ -1,0 +1,265 @@
+{
+  "cases": [
+    {
+      "query": "Учиться новому каждый день",
+      "expectedTop": "book",
+      "status": 200,
+      "response": {
+        "keys": [
+          "book",
+          "pen"
+        ],
+        "reasons": [
+          "Книга: Книга, чтение, образование. Учиться новому, получать знания, развиваться, осваивать профессию, обучение, самообразование, мудрость.",
+          "Ручка: Ручка, писать, записывать мысли. Творчество, составить план, начать с чистого листа, подписать договор, работа над текстом, идеи на бумаге, заметки, учеба."
+        ],
+        "engine": "multilingual-e5-small",
+        "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+        "uncertain": true,
+        "scores": {
+          "book": 0.8587,
+          "phone": 0.8327,
+          "puzzle": 0.7908,
+          "coin": 0.8113,
+          "headphones": 0.8228,
+          "lamp": 0.8161,
+          "flowers": 0.8001,
+          "wallet": 0.7862,
+          "folder": 0.8094,
+          "pen": 0.8356
+        },
+        "excluded": []
+      },
+      "seconds": 0.009,
+      "pass": true
+    },
+    {
+      "query": "Копить на мечту",
+      "expectedTop": "coin",
+      "status": 200,
+      "response": {
+        "keys": [
+          "coin"
+        ],
+        "reasons": [
+          "Монета: Монета, деньги, доход, финансовая выгода. Копить на мечту, сбережения, инвестиции, прибыль, бюджет, богатство, оплата, экономия."
+        ],
+        "engine": "multilingual-e5-small",
+        "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+        "uncertain": false,
+        "scores": {
+          "book": 0.8036,
+          "phone": 0.8063,
+          "puzzle": 0.7727,
+          "coin": 0.8615,
+          "headphones": 0.8119,
+          "lamp": 0.7963,
+          "flowers": 0.7975,
+          "wallet": 0.7957,
+          "folder": 0.7878,
+          "pen": 0.8024
+        },
+        "excluded": []
+      },
+      "seconds": 0.005,
+      "pass": true
+    },
+    {
+      "query": "Работать вместе над сложной задачей",
+      "expectedTop": "puzzle",
+      "status": 200,
+      "response": {
+        "keys": [
+          "puzzle",
+          "pen",
+          "folder"
+        ],
+        "reasons": [
+          "Пазлы: Пазлы, детали складываются в целое. Командная работа, сотрудничество, объединение людей, найти недостающую часть, решить сложную задачу, собрать систему, взаимопомощь.",
+          "Ручка: Ручка, писать, записывать мысли. Творчество, составить план, начать с чистого листа, подписать договор, работа над текстом, идеи на бумаге, заметки, учеба.",
+          "Папка: Папка с документами, архив, файлы. Навести порядок в делах, организовать работу, собрать важные бумаги, хранить информацию, планирование, рабочие процессы, управление проектами."
+        ],
+        "engine": "multilingual-e5-small",
+        "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+        "uncertain": true,
+        "scores": {
+          "book": 0.8069,
+          "phone": 0.8072,
+          "puzzle": 0.8487,
+          "coin": 0.7969,
+          "headphones": 0.8157,
+          "lamp": 0.8092,
+          "flowers": 0.7933,
+          "wallet": 0.7958,
+          "folder": 0.8306,
+          "pen": 0.8351
+        },
+        "excluded": []
+      },
+      "seconds": 0.006,
+      "pass": true
+    },
+    {
+      "query": "Тишина помогает сосредоточиться",
+      "expectedTop": "headphones",
+      "status": 200,
+      "response": {
+        "keys": [
+          "headphones"
+        ],
+        "reasons": [
+          "Наушники: Наушники, музыка, аудио, подкасты. Слушать, сосредоточиться, уйти от шума, концентрация на работе, любимая мелодия, отдых от суеты."
+        ],
+        "engine": "multilingual-e5-small",
+        "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+        "uncertain": true,
+        "scores": {
+          "book": 0.8115,
+          "phone": 0.8186,
+          "puzzle": 0.7997,
+          "coin": 0.7889,
+          "headphones": 0.8515,
+          "lamp": 0.8111,
+          "flowers": 0.8133,
+          "wallet": 0.7769,
+          "folder": 0.7965,
+          "pen": 0.8227
+        },
+        "excluded": []
+      },
+      "seconds": 0.007,
+      "pass": true
+    },
+    {
+      "query": "Найти светлую идею",
+      "expectedTop": "lamp",
+      "status": 200,
+      "response": {
+        "keys": [
+          "lamp"
+        ],
+        "reasons": [
+          "Лампа: Лампа, свет, освещение. Найти решение, озарение, новая идея, вдохновение, творческая мысль, видеть путь, ясность, свет знаний, рабочее место."
+        ],
+        "engine": "multilingual-e5-small",
+        "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+        "uncertain": false,
+        "scores": {
+          "book": 0.8114,
+          "phone": 0.8057,
+          "puzzle": 0.7934,
+          "coin": 0.8218,
+          "headphones": 0.8036,
+          "lamp": 0.8535,
+          "flowers": 0.8112,
+          "wallet": 0.7767,
+          "folder": 0.7859,
+          "pen": 0.8109
+        },
+        "excluded": []
+      },
+      "seconds": 0.006,
+      "pass": true
+    },
+    {
+      "query": "Общение на расстоянии",
+      "expectedTop": "phone",
+      "status": 200,
+      "response": {
+        "keys": [
+          "phone"
+        ],
+        "reasons": [
+          "Телефон: Телефон, мобильное приложение, интернет, цифровые технологии. Быть на связи, общаться на расстоянии, получать сообщения, всегда под рукой, онлайн-сервисы."
+        ],
+        "engine": "multilingual-e5-small",
+        "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+        "uncertain": true,
+        "scores": {
+          "book": 0.7761,
+          "phone": 0.8258,
+          "puzzle": 0.7733,
+          "coin": 0.7751,
+          "headphones": 0.798,
+          "lamp": 0.782,
+          "flowers": 0.7864,
+          "wallet": 0.7752,
+          "folder": 0.7666,
+          "pen": 0.7937
+        },
+        "excluded": []
+      },
+      "seconds": 0.006,
+      "pass": true
+    },
+    {
+      "query": "Рецепт борща",
+      "expectedTop": null,
+      "status": 400,
+      "response": {
+        "error": "Тема не похожа на доступные предметы. Уточните запрос или выберите их вручную."
+      },
+      "seconds": 0.005,
+      "pass": true
+    },
+    {
+      "query": "Полет на Марс",
+      "expectedTop": null,
+      "status": 400,
+      "response": {
+        "error": "Тема не похожа на доступные предметы. Уточните запрос или выберите их вручную."
+      },
+      "seconds": 0.005,
+      "pass": true
+    },
+    {
+      "query": "asdf qwerty",
+      "expectedTop": null,
+      "status": 400,
+      "response": {
+        "error": "Тема не похожа на доступные предметы. Уточните запрос или выберите их вручную."
+      },
+      "seconds": 0.006,
+      "pass": true
+    },
+    {
+      "query": "Сбережения без монет",
+      "expectedTop": "wallet",
+      "status": 200,
+      "response": {
+        "keys": [
+          "wallet"
+        ],
+        "reason": "Подобраны: Кошелёк. Исключено: Монета.",
+        "engine": "multilingual-e5-small",
+        "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+        "similarity": 0.8475,
+        "uncertain": false,
+        "excluded": [
+          "coin"
+        ]
+      },
+      "seconds": 0.004,
+      "pass": true
+    },
+    {
+      "query": "Книга и кошелёк без телефона",
+      "expectedTop": "book",
+      "status": 200,
+      "response": {
+        "keys": [
+          "book",
+          "wallet"
+        ],
+        "excluded": [
+          "phone"
+        ],
+        "engine": "explicit",
+        "reason": "Сохранены явно названные предметы с учётом исключений."
+      },
+      "seconds": 0.001,
+      "pass": true
+    }
+  ],
+  "zipVerified": true
+}

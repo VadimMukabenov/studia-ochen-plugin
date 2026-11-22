@@ -9,6 +9,9 @@ services:
       - "127.0.0.1:18763:18763"
     volumes:
       - model-cache:/models
+    environment:
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      OPENROUTER_MODEL: ${OPENROUTER_MODEL:-particle-ai/particle-1:free}
     init: true
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:18763/health', timeout=3)"]

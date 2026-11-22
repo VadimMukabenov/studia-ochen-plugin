@@ -55,9 +55,9 @@ Files: helper/server.py, helper semantic tests, web/app.mjs.
 
 Scoped exception explicitly requested by the user on 22 November: acquire a separate free OpenRouter key and smoke-test it before UI implementation. Done; see docs/free-cloud-spike.md. This does not complete or reorder the editor/model integration work below. The credential is outside Git and the Docker context; it must never enter a public release or the browser bundle.
 
-- [ ] Record an unseen evaluation set before tuning; include explicit names, mixed intent, exclusions, ambiguous and unsupported requests.
-- [ ] Preserve explicit requested objects, apply supported exclusions, expose uncertainty and keep model errors recoverable.
-- [ ] Verify actual local inference, edit preservation and stale response rejection. Do not label dictionary rules as AI.
+- [x] Record an unseen evaluation set before tuning; include explicit names, mixed intent, exclusions, ambiguous and unsupported requests.
+- [x] Preserve explicit requested objects, apply supported exclusions, expose uncertainty and keep model errors recoverable.
+- [x] Verify actual local inference, edit preservation and stale response rejection. Do not label dictionary rules as AI.
 
 ### Task 4: Reviewer delivery
 

@@ -31,11 +31,6 @@ class Helpers(unittest.TestCase):
         finally: server.shutdown();server.server_close()
 if __name__=='__main__': unittest.main()
 
-class UnsupportedInstructions(unittest.TestCase):
-    def test_negative_constraints_are_explicit_instead_of_ignored(self):
-        for q in ('Сбережения без монет','Не используй телефон','Исключи кошелек'):
-            with self.assertRaisesRegex(ValueError,'ограничения'):validate_query({'query':q})
-
 class EmpiricalNegatives(unittest.TestCase):
     def test_unrelated_observed_model_scores_are_below_acceptance(self):
         # Actual E5 maxima from first run: borscht .7836, Mars .7838.

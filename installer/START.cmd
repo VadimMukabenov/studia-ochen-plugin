@@ -26,7 +26,7 @@ if errorlevel 1 (
   exit /b 1
 )
 echo Ready: http://127.0.0.1:18763
-echo Plugin for Figma: plugin\manifest.json
+echo Editor is ready. Choose objects, edit, then download SVG.
 echo Stop: docker compose down
 start "" "http://127.0.0.1:18763"
 pause

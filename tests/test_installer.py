@@ -25,6 +25,9 @@ class InstallerTests(unittest.TestCase):
                 self.assertIn('sobrano/plugin/'+manifest['ui'], names)
                 self.assertIn(b'image: sobrano-review:contract-test', z.read('sobrano/compose.yaml'))
                 self.assertNotIn(b'build:', z.read('sobrano/compose.yaml'))
+                readme=z.read('sobrano/README.txt').decode()
+                self.assertIn('Редактор уже открыт в браузере',readme)
+                self.assertNotIn('Import plugin from manifest',readme)
                 self.assertTrue(z.getinfo('sobrano/START.command').external_attr >> 16 & 0o100)
                 self.assertEqual(z.read('sobrano/image.tar.gz'), image.read_bytes())
             import hashlib
