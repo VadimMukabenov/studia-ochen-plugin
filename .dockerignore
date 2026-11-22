@@ -8,3 +8,6 @@ playwright-report
 prototype
 source/scaffold-*
 .git
+.env
+.env.*
+!.env.example

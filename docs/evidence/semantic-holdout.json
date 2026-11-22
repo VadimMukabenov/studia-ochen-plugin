@@ -1,0 +1,24 @@
+{
+  "recorded_before_implementation": "2026-11-22T10:30:00Z",
+  "note": "Acceptance ranges written before planner implementation. Do not tune against this file; report failures and limits.",
+  "cases": [
+    {"query":"Подготовиться к новой профессии", "any":["book","pen"]},
+    {"query":"Сохранить деньги на будущую учёбу", "all":["book"], "any":["coin","wallet"]},
+    {"query":"Договориться с командой", "all":["puzzle"], "any":["phone","pen"]},
+    {"query":"Разложить рабочие документы по местам", "all":["folder"]},
+    {"query":"Послушать любимый подкаст", "all":["headphones"]},
+    {"query":"Заботиться о росте нового проекта", "all":["flowers"]},
+    {"query":"Озарение после долгих поисков", "all":["lamp"]},
+    {"query":"Подписать важный договор", "all":["pen","folder"]},
+    {"query":"Телефон и пазлы", "exact":["phone","puzzle"]},
+    {"query":"Книга и кошелёк, без телефона", "exact":["book","wallet"]},
+    {"query":"Учиться новому без монет", "all":["book"], "exclude":["coin"]},
+    {"query":"Без телефона, но с книгой и лампой", "exact":["book","lamp"]},
+    {"query":"Не добавляй кошелёк. Хочу книгу и ручку", "exact":["book","pen"]},
+    {"query":"Нужен автомобиль и самолёт", "reject":true},
+    {"query":"Рецепт борща", "reject":true},
+    {"query":"Что-то красивое", "reject":true},
+    {"query":"Не используй телефон", "reject":true},
+    {"query":"Сбережения, но без кошелька и монет", "exclude":["wallet","coin"], "reject":true}
+  ]
+}

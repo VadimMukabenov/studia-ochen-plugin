@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: Preview release tag
+        description: Release tag
         required: true
-        default: v0.2.0-preview
+        default: v0.3.0
 permissions:
   contents: write
 concurrency:
@@ -17,11 +17,15 @@ jobs:
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
       - run: python3 -m unittest discover -s tests -p test_release_safety.py
+      - run: python3 tests/test_library.py
       - env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-          VERSION: ${{ inputs.version || 'v0.2.0-preview' }}
-        run: sh scripts/prepare-reviewer-release.sh "$VERSION"
+          VERSION: ${{ inputs.version || 'v0.3.0' }}
+        run: |
+          sh scripts/prepare-reviewer-release.sh "$VERSION"
+          node scripts/package.cjs
+          gh release upload "$VERSION" dist/sobrano-source.zip docs/editor-demo.gif examples/*.svg --clobber
   build:
     needs: prepare
     strategy:
@@ -48,6 +52,9 @@ jobs:
             if docker exec reviewer-test python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:18763/health')"; then break; fi
             sleep 2
           done
+          docker cp tests reviewer-test:/app/tests
+          docker exec reviewer-test python -m unittest discover -s tests -p "test_helper.py"
+          docker exec reviewer-test python -m unittest discover -s tests -p "test_planner.py"
           docker cp tests/model_smoke.py reviewer-test:/tmp/model_smoke.py
           docker exec reviewer-test python /tmp/model_smoke.py
           docker cp reviewer-test:/app/dist ./dist
@@ -58,5 +65,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-          VERSION: ${{ inputs.version || 'v0.2.0-preview' }}
+          VERSION: ${{ inputs.version || 'v0.3.0' }}
         run: gh release upload "$VERSION" dist/reviewer/* --clobber

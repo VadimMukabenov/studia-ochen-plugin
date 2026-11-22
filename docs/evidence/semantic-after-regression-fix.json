@@ -1,0 +1,280 @@
+[
+  {
+    "query": "Подготовиться к новой профессии",
+    "result": {
+      "keys": [
+        "book",
+        "pen"
+      ],
+      "reasons": [
+        "Книга: Книга, чтение, образование. Учиться новому, получать знания, развиваться, осваивать профессию, обучение, самообразование, мудрость.",
+        "Ручка: Ручка, писать, записывать мысли. Творчество, составить план, начать с чистого листа, подписать договор, работа над текстом, идеи на бумаге, заметки, учеба."
+      ],
+      "engine": "multilingual-e5-small",
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "uncertain": true,
+      "scores": {
+        "book": 0.8575,
+        "phone": 0.8271,
+        "puzzle": 0.7992,
+        "coin": 0.8154,
+        "headphones": 0.8241,
+        "lamp": 0.8219,
+        "flowers": 0.8078,
+        "wallet": 0.778,
+        "folder": 0.821,
+        "pen": 0.8438
+      },
+      "excluded": []
+    },
+    "pass": true
+  },
+  {
+    "query": "Сохранить деньги на будущую учёбу",
+    "result": {
+      "keys": [
+        "book",
+        "wallet",
+        "coin"
+      ],
+      "reason": "Книга — знания, кошелёк и монета — средства на обучение.",
+      "engine": "multilingual-e5-small",
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "similarity": 0.8905,
+      "uncertain": false,
+      "excluded": []
+    },
+    "pass": true
+  },
+  {
+    "query": "Договориться с командой",
+    "result": {
+      "keys": [
+        "puzzle",
+        "phone"
+      ],
+      "reason": "Пазлы соединяются, телефон помогает общаться.",
+      "engine": "multilingual-e5-small",
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "similarity": 0.8566,
+      "uncertain": false,
+      "excluded": []
+    },
+    "pass": true
+  },
+  {
+    "query": "Разложить рабочие документы по местам",
+    "result": {
+      "keys": [
+        "pen",
+        "folder"
+      ],
+      "reason": "Ручка и папка — подписание и документы.",
+      "engine": "multilingual-e5-small",
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "similarity": 0.8461,
+      "uncertain": false,
+      "excluded": []
+    },
+    "pass": true
+  },
+  {
+    "query": "Послушать любимый подкаст",
+    "result": {
+      "keys": [
+        "headphones"
+      ],
+      "reasons": [
+        "Наушники: Наушники, музыка, аудио, подкасты. Слушать, сосредоточиться, уйти от шума, концентрация на работе, любимая мелодия, отдых от суеты."
+      ],
+      "engine": "multilingual-e5-small",
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "uncertain": false,
+      "scores": {
+        "book": 0.7657,
+        "phone": 0.792,
+        "puzzle": 0.7563,
+        "coin": 0.785,
+        "headphones": 0.8566,
+        "lamp": 0.7732,
+        "flowers": 0.7927,
+        "wallet": 0.7827,
+        "folder": 0.7677,
+        "pen": 0.7742
+      },
+      "excluded": []
+    },
+    "pass": true
+  },
+  {
+    "query": "Заботиться о росте нового проекта",
+    "result": {
+      "keys": [
+        "flowers"
+      ],
+      "reason": "Цветы — рост и бережная забота.",
+      "engine": "multilingual-e5-small",
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "similarity": 0.8969,
+      "uncertain": false,
+      "excluded": []
+    },
+    "pass": true
+  },
+  {
+    "query": "Озарение после долгих поисков",
+    "result": {
+      "keys": [
+        "lamp",
+        "pen"
+      ],
+      "reason": "Лампа — озарение, ручка — запись идеи.",
+      "engine": "multilingual-e5-small",
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "similarity": 0.8484,
+      "uncertain": false,
+      "excluded": []
+    },
+    "pass": true
+  },
+  {
+    "query": "Подписать важный договор",
+    "result": {
+      "keys": [
+        "pen",
+        "folder"
+      ],
+      "reason": "Ручка и папка — подписание и документы.",
+      "engine": "multilingual-e5-small",
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "similarity": 0.9065,
+      "uncertain": false,
+      "excluded": []
+    },
+    "pass": true
+  },
+  {
+    "query": "Телефон и пазлы",
+    "result": {
+      "keys": [
+        "phone",
+        "puzzle"
+      ],
+      "excluded": [],
+      "engine": "explicit",
+      "reason": "Сохранены явно названные предметы."
+    },
+    "pass": true
+  },
+  {
+    "query": "Книга и кошелёк, без телефона",
+    "result": {
+      "keys": [
+        "book",
+        "wallet"
+      ],
+      "excluded": [
+        "phone"
+      ],
+      "engine": "explicit",
+      "reason": "Сохранены явно названные предметы с учётом исключений."
+    },
+    "pass": true
+  },
+  {
+    "query": "Учиться новому без монет",
+    "result": {
+      "keys": [
+        "book",
+        "pen"
+      ],
+      "reason": "Подобраны: Книга, Ручка. Исключено: Монета.",
+      "engine": "multilingual-e5-small",
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "similarity": 0.8672,
+      "uncertain": false,
+      "excluded": [
+        "coin"
+      ]
+    },
+    "pass": true
+  },
+  {
+    "query": "Без телефона, но с книгой и лампой",
+    "result": {
+      "keys": [
+        "book",
+        "lamp"
+      ],
+      "excluded": [
+        "phone"
+      ],
+      "engine": "explicit",
+      "reason": "Сохранены явно названные предметы с учётом исключений."
+    },
+    "pass": true
+  },
+  {
+    "query": "Не добавляй кошелёк. Хочу книгу и ручку",
+    "result": {
+      "keys": [
+        "book",
+        "pen"
+      ],
+      "excluded": [
+        "wallet"
+      ],
+      "engine": "explicit",
+      "reason": "Сохранены явно названные предметы с учётом исключений."
+    },
+    "pass": true
+  },
+  {
+    "query": "Нужен автомобиль и самолёт",
+    "error": "Таких предметов нет в исходной библиотеке. Доступно 10 предметов; выберите их вручную или опишите близкую тему.",
+    "pass": true
+  },
+  {
+    "query": "Рецепт борща",
+    "error": "Тема не похожа на доступные предметы. Уточните запрос или выберите их вручную.",
+    "pass": true
+  },
+  {
+    "query": "Что-то красивое",
+    "result": {
+      "keys": [
+        "flowers"
+      ],
+      "reasons": [
+        "Цветы: Цветы, растение в горшке. Рост, забота, развитие, процветание, уют, красота, поддерживать и выращивать новое, бережное отношение, благополучие."
+      ],
+      "engine": "multilingual-e5-small",
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "uncertain": true,
+      "scores": {
+        "book": 0.7851,
+        "phone": 0.7911,
+        "puzzle": 0.7776,
+        "coin": 0.7957,
+        "headphones": 0.7988,
+        "lamp": 0.8031,
+        "flowers": 0.8259,
+        "wallet": 0.7875,
+        "folder": 0.7827,
+        "pen": 0.7881
+      },
+      "excluded": []
+    },
+    "pass": false
+  },
+  {
+    "query": "Не используй телефон",
+    "error": "Укажите тему или желаемые предметы, а не только исключения.",
+    "pass": true
+  },
+  {
+    "query": "Сбережения, но без кошелька и монет",
+    "error": "Тема не похожа на доступные предметы. Уточните запрос или выберите их вручную.",
+    "pass": true
+  }
+]

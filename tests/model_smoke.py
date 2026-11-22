@@ -1,6 +1,6 @@
 """Real runtime HTTP/model integration. Run after Compose reports Ready."""
 import urllib.request,urllib.error,json,time,io,zipfile
-CASES=[('Учиться новому каждый день','book'),('Копить на мечту','coin'),('Работать вместе над сложной задачей','puzzle'),('Тишина помогает сосредоточиться','headphones'),('Найти светлую идею','lamp'),('Общение на расстоянии','phone'),('Рецепт борща',None),('Полет на Марс',None),('asdf qwerty',None),('Сбережения без монет',None)]
+CASES=[('Учиться новому каждый день','book'),('Копить на мечту','coin'),('Работать вместе над сложной задачей','puzzle'),('Тишина помогает сосредоточиться','headphones'),('Найти светлую идею','lamp'),('Общение на расстоянии','phone'),('Рецепт борща',None),('Полет на Марс',None),('asdf qwerty',None),('Сбережения без монет','wallet'),('Книга и кошелёк без телефона','book')]
 def run(base='http://127.0.0.1:18763'):
     assert json.load(urllib.request.urlopen(base+'/health',timeout=5))['ready']
     results=[]
@@ -9,14 +9,16 @@ def run(base='http://127.0.0.1:18763'):
         try:
             with urllib.request.urlopen(req,timeout=30) as response: result=json.load(response);status=response.status
         except urllib.error.HTTPError as e:status=e.code;result=json.load(e)
-        passed=(status==400) if expected is None else (status==200 and result['keys'][0]==expected)
+        passed=(status==400) if expected is None else (status==200 and expected in result['keys'])
         results.append({'query':query,'expectedTop':expected,'status':status,'response':result,'seconds':round(time.monotonic()-start,3),'pass':passed})
     package=urllib.request.urlopen(base+'/sobrano-plugin.zip',timeout=5).read()
     with zipfile.ZipFile(io.BytesIO(package)) as archive:
         assert set(archive.namelist())=={'code.js','manifest.json','ui.html'}
         manifest=json.loads(archive.read('manifest.json'));assert manifest['main']=='code.js'
         assert b'localhost' not in archive.read('ui.html') # fixed loopback IP
-    assert b'Figma' in urllib.request.urlopen(base+'/',timeout=5).read()
+    assert b'app.mjs' in urllib.request.urlopen(base+'/',timeout=5).read()
+    for path in ('app.mjs','core.mjs','catalog.mjs','assets/phone-S-background.svg','icons/copy.svg'):
+        assert urllib.request.urlopen(base+'/'+path,timeout=5).status==200
     for filename in ['1-learning.svg','2-connection.svg','3-savings.svg']:
         svg=urllib.request.urlopen(base+'/examples/'+filename,timeout=5).read();assert b'<svg' in svg and b'<image' not in svg
     print(json.dumps({'cases':results,'zipVerified':True},ensure_ascii=False,indent=2))

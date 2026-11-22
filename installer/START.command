@@ -8,7 +8,7 @@ docker compose version >/dev/null 2>&1 || fail 'Docker Compose v2 is required. U
 printf 'Loading the prepared application and model. First start may take a few minutes.\n'
 docker load -i image.tar.gz || fail 'Could not load image.tar.gz. Extract the entire archive and check free disk space.'
 docker compose up -d --wait --wait-timeout 120 || fail 'Could not start. Check Docker logs: docker compose logs. Port 18763 must be free.'
-printf '\nReady: http://127.0.0.1:18763\nPlugin for Figma: plugin/manifest.json\nStop: docker compose down\n'
+printf '\nReady: http://127.0.0.1:18763\nEditor is ready. Choose objects, edit, then download SVG.\nStop: docker compose down\n'
 if [ "${SOBRANO_NO_BROWSER:-0}" != 1 ]; then
   if command -v open >/dev/null 2>&1; then open http://127.0.0.1:18763 || true
   elif command -v xdg-open >/dev/null 2>&1; then xdg-open http://127.0.0.1:18763 >/dev/null 2>&1 || true; fi
