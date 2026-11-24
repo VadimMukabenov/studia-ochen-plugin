@@ -1,0 +1,63 @@
+{
+  "verified_date": "2026-11-24",
+  "editor": "https://vadimmukabenov.github.io/studia-ochen-plugin/",
+  "source_merge_sha": "a4b27b727bc3aba7f7552556a9627335fa2c503a",
+  "pull_request": 2,
+  "worker_version": "dcc2da58-6b63-4002-9405-0204a408a9f8",
+  "provider": "OpenRouter",
+  "model": "particle-ai/particle-1:free",
+  "key_storage": "personal Cloudflare server Secret; absent from source and browser",
+  "key_expires": "2026-12-22",
+  "paid_fallback": false,
+  "tests": {
+    "node_core": 26,
+    "worker_contract": 10,
+    "release_safety": 4,
+    "typescript": "passed",
+    "build": "passed"
+  },
+  "live_http": {
+    "health_status": 200,
+    "ready": true,
+    "query": "Сосредоточиться без шума",
+    "keys": [
+      "headphones",
+      "book",
+      "lamp"
+    ]
+  },
+  "live_browser": {
+    "query": "Сохранить деньги на будущую учёбу без телефона",
+    "proposed_keys": [
+      "wallet",
+      "coin",
+      "book"
+    ],
+    "excluded": [
+      "phone"
+    ],
+    "accepted": true,
+    "wallet_rotation_degrees": 15,
+    "svg_downloaded": true,
+    "console_warnings_errors": 0,
+    "desktop_viewport": [
+      1440,
+      1024
+    ],
+    "document_width": 1440,
+    "screenshot": "../editor-online-ai.png"
+  },
+  "downloaded_svg": {
+    "file": "../../examples/4-online-learning.svg",
+    "sha256": "71516a95da830e56a13ca1acd32466a50bf0fbd3dee8fc9e84b6a2a9430b8505",
+    "paths": 276,
+    "images": 0,
+    "metadata": "Original Figma library · common scale 0.42509066721350797 · L · editable paths"
+  },
+  "limitations": [
+    "Shared free quota; provider/model availability is not guaranteed.",
+    "In-memory IP budget is per isolate, not a durable distributed quota.",
+    "Free DeepSeek absent from official model catalog when checked on 2026-11-24."
+  ],
+  "old_sites_pilot_key": "removed and environment revision deployed"
+}
