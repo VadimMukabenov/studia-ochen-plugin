@@ -6,7 +6,6 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
-  actions: read
   pages: write
   id-token: write
 env:
@@ -15,11 +14,10 @@ concurrency:
   group: pages
   cancel-in-progress: true
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-24.04
+    outputs:
+      artifact_name: ${{ env.PAGES_ARTIFACT_NAME }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
       - name: Verify public AI contract
@@ -29,22 +27,14 @@ jobs:
         with:
           path: web
           name: ${{ env.PAGES_ARTIFACT_NAME }}
-      - name: Wait for uploaded artifact metadata
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          for attempt in $(seq 1 12); do
-            count=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts?per_page=100" --jq ".artifacts | map(select(.name == \"$PAGES_ARTIFACT_NAME\")) | length")
-            if [ "$count" = 1 ]; then exit 0; fi
-            if [ "$count" != 0 ]; then
-              echo "Unexpected artifact count: $count" >&2
-              exit 1
-            fi
-            sleep 5
-          done
-          echo "Uploaded artifact metadata did not become available" >&2
-          exit 1
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-24.04
+    steps:
       - uses: actions/deploy-pages@v4
         id: deployment
         with:
-          artifact_name: ${{ env.PAGES_ARTIFACT_NAME }}
+          artifact_name: ${{ needs.build.outputs.artifact_name }}
