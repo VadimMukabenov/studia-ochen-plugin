@@ -4,6 +4,7 @@
   "version": "0.3.0",
   "scripts": {
     "test": "node --test tests/*.test.cjs",
+    "test:online": "node --test online/tests.mjs",
     "test:library": "python3 tests/test_library.py",
     "check": "tsc --noEmit",
     "build": "node scripts/build.cjs",
