@@ -95,7 +95,7 @@ export async function start({onProgress}={}){
   let recovered=false;
   try{const raw=localStorage.getItem(storageKey);if(raw){scene=C.parseProject(raw);chosen=[...new Set(scene.items.map(i=>i.key))];selected=scene.items[0]?.id||null;recovered=true;}}
   catch{notice('Сохранённый проект не удалось открыть. Исходная библиотека доступна.','error');}
-  render();if(!recovered)remember();
+  render();if(!recovered)remember();else $('save-status').textContent='Восстановлено из браузера';
   if(publicApi)$('engine-hint').textContent='Проверяем доступность AI…';
   checkBackend();
 }

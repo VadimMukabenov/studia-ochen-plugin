@@ -783,6 +783,8 @@ async function start({ onProgress } = {}) {
     render();
     if (!recovered)
         remember();
+    else
+        $('save-status').textContent = 'Восстановлено из браузера';
     if (publicApi)
         $('engine-hint').textContent = 'Проверяем доступность AI…';
     checkBackend();

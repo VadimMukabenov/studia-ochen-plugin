@@ -9,11 +9,11 @@ async function controller(){
  const C=await import('../web/core.mjs');const elements=new Map();
  function element(id){if(!elements.has(id))elements.set(id,{value:'',hidden:false,style:{},dataset:{},firstElementChild:{textContent:''},classList:{add(){},remove(){}},listeners:{},setAttribute(){},querySelectorAll(){return[];},addEventListener(name,fn){this.listeners[name]=fn;},getBoundingClientRect(){return{width:1200,height:675};},setPointerCapture(){},scrollIntoView(){}});return elements.get(id);}
  let release,missingStudio=false;const windowHandlers={};
- const context=vm.createContext({C,structuredClone,AbortSignal,innerWidth:1440,location:{hostname:'localhost'},window:{addEventListener(name,fn){windowHandlers[name]=fn;}},document:{getElementById:id=>id==='studio'&&missingStudio?null:element(id),querySelectorAll(){return[];},querySelector:selector=>selector==='dialog[open]'?null:element('studio')},fetch:()=>new Promise(resolve=>{release=resolve;})});
+ const context=vm.createContext({C,structuredClone,AbortSignal,innerWidth:1440,location:{hostname:'localhost'},window:{addEventListener(name,fn){windowHandlers[name]=fn;}},loadLibrary:async()=>({}),localStorage:{getItem:()=>JSON.stringify(C.createScene(['phone','puzzle']))},document:{getElementById:id=>id==='studio'&&missingStudio?null:element(id),querySelectorAll(){return[];},querySelector:selector=>selector==='dialog[open]'?null:element('studio')},fetch:()=>new Promise(resolve=>{release=resolve;})});
  vm.runInContext(source,context);
  vm.runInContext('render=()=>{};renderCanvas=()=>{};remember=()=>{};backendAvailable=true;setMode("meaning");',context);
  element('prompt').value='свидание с девушкой';element('engine').value='openrouter';
- return {$:element,hideStudioId:()=>{missingStudio=true;},key:e=>windowHandlers.keydown(e),read:()=>JSON.parse(vm.runInContext('JSON.stringify(scene)',context)),start:()=>vm.runInContext('resolveMeaning()',context),respond:(data,status=200)=>release({ok:status===200,json:async()=>data})};
+ return {$:element,startApp:()=>vm.runInContext('start()',context),hideStudioId:()=>{missingStudio=true;},key:e=>windowHandlers.keydown(e),read:()=>JSON.parse(vm.runInContext('JSON.stringify(scene)',context)),start:()=>vm.runInContext('resolveMeaning()',context),respond:(data,status=200)=>release({ok:status===200,json:async()=>data})};
 }
 const result={keys:['flowers','wallet','phone'],reason:'Цветы, оплата и связь',engine:'openrouter'};
 test('one click creates the scene and one undo restores the entire previous scene',async()=>{
@@ -54,4 +54,9 @@ test('visible startup shell blocks keyboard mutation until canvas becomes ready'
  assert.deepEqual(c.read(),before);
  c.$('canvas-surface').inert=false;c.key({key:'Delete',preventDefault(){}});
  assert.equal(c.read().items.length,before.items.length-1);
+});
+
+test('restored project replaces the temporary startup label with restored status',async()=>{
+ const c=await controller();c.$('save-status').textContent='Подготавливаем редактор…';
+ await c.startApp();assert.equal(c.$('save-status').textContent,'Восстановлено из браузера');
 });
