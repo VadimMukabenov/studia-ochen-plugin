@@ -4,11 +4,11 @@
   let timer;
   try{
     const app=await Promise.race([
-      import('./app.mjs?startup=20261125'),
+      import('./app.mjs?startup=20261125-3'),
       new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('module timeout')),30000);})
     ]);
     clearTimeout(timer);
-    await app.start({onProgress:({loaded,total})=>{status.textContent=`Загружаем иллюстрации: ${loaded} из ${total}`;}});
+    await app.start({onProgress:({loaded,total})=>{status.textContent=loaded?`Загружаем иллюстрации: ${loaded} из ${total}`:`Загружаем библиотеку (${total} иллюстраций)…`;}});
     document.getElementById('startup').hidden=true;
     document.getElementById('app-header').inert=false;
     document.getElementById('studio').hidden=false;
