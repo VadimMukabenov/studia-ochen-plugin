@@ -37,3 +37,22 @@ test('corrupt cache is discarded and unavailable browser storage does not block 
  const unavailable={getItem(){throw Error('storage denied');},setItem(){throw Error('quota');},removeItem(){}};
  assert.equal((await loadLibrary(['phone.svg'],{...options,baseURL,storage:unavailable}))['phone.svg'],SVG);
 });
+test('uses one compressed library request and caches each validated original',async t=>{
+ const {gzipSync}=require('node:zlib');let calls=0;
+ const body=gzipSync(JSON.stringify({version:1,files:{'phone.svg':SVG,'book.svg':SVG}}));
+ const baseURL=await server(t,(req,res)=>{calls++;res.end(body);});const storage=cache();
+ const assets=await loadLibrary(['phone.svg','book.svg'],{...options,baseURL,bundleURL:baseURL+'library.json.gz',storage});
+ assert.equal(calls,1);assert.equal(assets['phone.svg'],SVG);assert.equal(assets['book.svg'],SVG);
+ await loadLibrary(['phone.svg','book.svg'],{...options,baseURL,bundleURL:baseURL+'library.json.gz',storage});assert.equal(calls,1);
+});
+test('broken bundle falls back to individual originals without caching unsafe data',async t=>{
+ let calls=0;const baseURL=await server(t,(req,res)=>{calls++;res.end(req.url.endsWith('.gz')?'not gzip':SVG);});
+ const assets=await loadLibrary(['phone.svg'],{...options,baseURL,bundleURL:baseURL+'library.json.gz',storage:cache()});
+ assert.equal(calls,2);assert.equal(assets['phone.svg'],SVG);
+});
+test('published compressed bundle contains exactly the forty unchanged original SVGs',()=>{
+ const fs=require('node:fs'),path=require('node:path'),{gunzipSync}=require('node:zlib');
+ const root=path.join(__dirname,'..','web','assets');const bundle=JSON.parse(gunzipSync(fs.readFileSync(path.join(root,'library.json.gz'))));
+ const names=fs.readdirSync(root).filter(n=>n.endsWith('.svg')).sort();assert.equal(names.length,40);assert.equal(bundle.version,1);assert.deepEqual(Object.keys(bundle.files).sort(),names);
+ for(const name of names)assert.equal(bundle.files[name],fs.readFileSync(path.join(root,name),'utf8'),name);
+});

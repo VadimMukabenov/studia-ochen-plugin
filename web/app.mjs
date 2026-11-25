@@ -1,5 +1,5 @@
 import * as C from './core.mjs';
-import {loadLibrary} from './library-loader.mjs';
+import {loadLibrary} from './library-loader.mjs?v=20261125-3';
 const $=id=>document.getElementById(id),icon=name=>`<img src="icons/${name}.svg" alt="">`,esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const labels={compact:'Вместе',diagonal:'По диагонали',editorial:'Место для текста'};
 const publicApi=location.hostname==='vadimmukabenov.github.io'?'https://sobrano-ai.vadim-mukabenov98.workers.dev':'';
@@ -88,7 +88,7 @@ for(const b of document.querySelectorAll('[data-example]'))b.onclick=()=>{const 
 $('export-png').onclick=async()=>{closeMenus();try{const svg=C.exportSvg(scene,assets),image=new Image(),url=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'}));await new Promise((ok,no)=>{image.onload=ok;image.onerror=no;image.src=url;});const c=document.createElement('canvas');c.width=scene.width;c.height=scene.height;c.getContext('2d').drawImage(image,0,0);URL.revokeObjectURL(url);const data=await new Promise(ok=>c.toBlob(ok,'image/png'));download(data,fileName('png'),'image/png');notice('PNG скачан. Для редактирования контуров используйте SVG.');}catch{notice('Не удалось подготовить PNG. SVG можно скачать основной кнопкой.','error');}};
 async function checkBackend(){try{const response=await fetch(publicApi+'/health',{signal:AbortSignal.timeout(10000)});if(!response.ok)throw Error('Подбор недоступен');const health=await response.json();if(publicApi&&!health.openrouter)throw Error('AI не подключён');backendAvailable=true;$('engine').querySelector('[value=openrouter]').disabled=!health.openrouter;$('engine').querySelector('[value=openrouter]').textContent=health.openrouter?'Бесплатный AI · OpenRouter':'Бесплатный облачный AI · не подключён';if(publicApi){for(const option of $('engine').options)option.disabled=option.value!=='openrouter';$('engine').value='openrouter';$('engine-hint').textContent='AI работает прямо здесь, без ключа и установки. Модель: '+health.model+'. Бесплатный лимит общий для демо. Текст запроса передаётся OpenRouter; правки на холсте остаются в браузере.';}setMode(mode);}catch{backendAvailable=false;$('prompt').disabled=true;$('engine').disabled=true;$('engine-hint').innerHTML='Сейчас нет связи с AI. Обновите страницу позже или используйте локальный комплект с моделью, без ключа и интернета. <a href="https://github.com/VadimMukabenov/studia-ochen-plugin/releases/tag/v0.3.0" target="_blank" rel="noreferrer">Скачать готовый комплект</a>. Для ручной сборки вернитесь в «Предметы».';for(const b of document.querySelectorAll('[data-prompt]'))b.disabled=true;setMode(mode);}}
 export async function start({onProgress}={}){
-  assets=await loadLibrary(C.variants.map(v=>v.asset),{onProgress});
+  assets=await loadLibrary(C.variants.map(v=>v.asset),{onProgress,bundleURL:'assets/library.json.gz'});
   for(const url of Object.values(assetUrls))URL.revokeObjectURL(url);
   assetUrls=Object.fromEntries(Object.entries(assets).map(([name,raw])=>[name,URL.createObjectURL(new Blob([raw],{type:'image/svg+xml'}))]));
   let recovered=false;
