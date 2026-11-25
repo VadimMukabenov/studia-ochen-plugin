@@ -4,7 +4,7 @@ const failed=()=>new Error('Загрузка иллюстраций прерва
 
 // The originals are immutable. Cache only SVGs validated by the same parser as
 // the renderer; partial successes remain available after a network interruption.
-export async function loadLibrary(files,{baseURL='assets/',storage,onProgress=()=>{},timeoutMs=8000,totalTimeoutMs=60000,bundleURL,bundleTimeoutMs=20000}={}){
+export async function loadLibrary(files,{baseURL='assets/',storage,onProgress=()=>{},timeoutMs=8000,totalTimeoutMs=90000,bundleURL,bundleTimeoutMs=60000}={}){
   if(!Array.isArray(files)||files.some(name=>!/^[-a-zA-Z0-9]+\.svg$/.test(name)))throw failed();
   files=[...new Set(files)];
   if(storage===undefined){try{storage=globalThis.localStorage;}catch{storage=null;}}

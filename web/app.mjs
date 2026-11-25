@@ -1,5 +1,5 @@
 import * as C from './core.mjs';
-import {loadLibrary} from './library-loader.mjs?v=20261125-3';
+import {loadLibrary} from './library-loader.mjs?v=20261125-4';
 const $=id=>document.getElementById(id),icon=name=>`<img src="icons/${name}.svg" alt="">`,esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const labels={compact:'Вместе',diagonal:'По диагонали',editorial:'Место для текста'};
 const publicApi=location.hostname==='vadimmukabenov.github.io'?'https://sobrano-ai.vadim-mukabenov98.workers.dev':'';

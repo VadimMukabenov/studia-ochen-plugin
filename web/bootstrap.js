@@ -4,7 +4,7 @@
   let timer;
   try{
     const app=await Promise.race([
-      import('./app.mjs?startup=20261125-3'),
+      import('./app.mjs?startup=20261125-4'),
       new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('module timeout')),30000);})
     ]);
     clearTimeout(timer);

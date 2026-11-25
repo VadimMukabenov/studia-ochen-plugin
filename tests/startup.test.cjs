@@ -2,7 +2,7 @@ const test=require('node:test');
 const assert=require('node:assert/strict');
 const fs=require('node:fs'),vm=require('node:vm');
 // Replace only the external module fetch; execute the production bootstrap.
-const source=fs.readFileSync(require.resolve('../web/bootstrap.js'),'utf8').replace("import('./app.mjs?startup=20261125-3')",'loadApp()');
+const source=fs.readFileSync(require.resolve('../web/bootstrap.js'),'utf8').replace("import('./app.mjs?startup=20261125-4')",'loadApp()');
 async function boot(loadApp){
  const nodes=Object.fromEntries(['startup-title','startup-status','startup','studio','app-header'].map(id=>[id,{hidden:id==='studio',inert:id==='app-header',dataset:{}}]));
  await vm.runInNewContext(source,{loadApp,document:{getElementById:id=>nodes[id]},setTimeout:(fn,ms)=>setTimeout(fn,ms/1000),clearTimeout});return nodes;
