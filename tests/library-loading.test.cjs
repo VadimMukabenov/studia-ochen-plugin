@@ -56,3 +56,10 @@ test('published compressed bundle contains exactly the forty unchanged original 
  const names=fs.readdirSync(root).filter(n=>n.endsWith('.svg')).sort();assert.equal(names.length,40);assert.equal(bundle.version,1);assert.deepEqual(Object.keys(bundle.files).sort(),names);
  for(const name of names)assert.equal(bundle.files[name],fs.readFileSync(path.join(root,name),'utf8'),name);
 });
+test('embedded originals initialize without any fetch, including when browser storage is denied',async()=>{
+ const originalFetch=global.fetch;let calls=0;global.fetch=async()=>{calls++;throw Error('all separate resources blocked');};
+ try{const denied={getItem(){throw Error('denied');},setItem(){throw Error('denied');},removeItem(){}};
+  const result=await loadLibrary(['phone.svg','book.svg'],{...options,storage:denied,embedded:{version:1,files:{'phone.svg':SVG,'book.svg':SVG}}});
+  assert.equal(calls,0);assert.equal(result['phone.svg'],SVG);assert.equal(result['book.svg'],SVG);
+ }finally{global.fetch=originalFetch;}
+});
