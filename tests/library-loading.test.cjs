@@ -3,11 +3,11 @@ const assert=require('node:assert/strict');
 const http=require('node:http');
 const {once}=require('node:events');
 const SVG='<svg xmlns="http://www.w3.org/2000/svg"><g id="source"><path d="M0 0L1 1"/></g></svg>';
-let loadLibrary,core;
-test.before(async()=>{({loadLibrary}=await import('../web/library-loader.mjs'));core=await import('../web/core.mjs');});
+let loadLibrary;
+test.before(async()=>{({loadLibrary}=await import('../web/library-loader.mjs'));});
 async function server(t,handler){const s=http.createServer(handler);s.listen(0,'127.0.0.1');await once(s,'listening');t.after(()=>{s.closeAllConnections();s.close();});return `http://127.0.0.1:${s.address().port}/`;}
 function cache(){const m=new Map();return {getItem:k=>m.get(k)??null,setItem:(k,v)=>m.set(k,v),removeItem:k=>m.delete(k),values:m};}
-const options={timeoutMs:200,totalTimeoutMs:1000,verify:text=>core.assetBody(text,core.palettes[0])};
+const options={timeoutMs:200,totalTimeoutMs:1000};
 test('limits simultaneous asset requests and reports actual completed progress',async t=>{
  let active=0,peak=0;const baseURL=await server(t,(req,res)=>{active++;peak=Math.max(peak,active);setTimeout(()=>{active--;res.end(SVG);},15);});
  const files=Array.from({length:12},(_,i)=>`asset-${i}.svg`),progress=[];

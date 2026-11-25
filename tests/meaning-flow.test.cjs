@@ -8,12 +8,12 @@ const source=fs.readFileSync(require.resolve('../web/app.mjs'),'utf8').replace(/
 async function controller(){
  const C=await import('../web/core.mjs');const elements=new Map();
  function element(id){if(!elements.has(id))elements.set(id,{value:'',hidden:false,style:{},dataset:{},firstElementChild:{textContent:''},classList:{add(){},remove(){}},listeners:{},setAttribute(){},querySelectorAll(){return[];},addEventListener(name,fn){this.listeners[name]=fn;},getBoundingClientRect(){return{width:1200,height:675};},setPointerCapture(){},scrollIntoView(){}});return elements.get(id);}
- let release;
- const context=vm.createContext({C,structuredClone,AbortSignal,innerWidth:1440,location:{hostname:'localhost'},window:{addEventListener(){}},document:{getElementById:element,querySelectorAll(){return[];},querySelector:()=>element('studio')},fetch:()=>new Promise(resolve=>{release=resolve;})});
+ let release;const windowHandlers={};
+ const context=vm.createContext({C,structuredClone,AbortSignal,innerWidth:1440,location:{hostname:'localhost'},window:{addEventListener(name,fn){windowHandlers[name]=fn;}},document:{getElementById:element,querySelectorAll(){return[];},querySelector:selector=>selector==='dialog[open]'?null:element('studio')},fetch:()=>new Promise(resolve=>{release=resolve;})});
  vm.runInContext(source,context);
  vm.runInContext('render=()=>{};renderCanvas=()=>{};remember=()=>{};backendAvailable=true;setMode("meaning");',context);
  element('prompt').value='свидание с девушкой';element('engine').value='openrouter';
- return {$:element,read:()=>JSON.parse(vm.runInContext('JSON.stringify(scene)',context)),start:()=>vm.runInContext('resolveMeaning()',context),respond:(data,status=200)=>release({ok:status===200,json:async()=>data})};
+ return {$:element,key:e=>windowHandlers.keydown(e),read:()=>JSON.parse(vm.runInContext('JSON.stringify(scene)',context)),start:()=>vm.runInContext('resolveMeaning()',context),respond:(data,status=200)=>release({ok:status===200,json:async()=>data})};
 }
 const result={keys:['flowers','wallet','phone'],reason:'Цветы, оплата и связь',engine:'openrouter'};
 test('one click creates the scene and one undo restores the entire previous scene',async()=>{
@@ -36,4 +36,9 @@ for(const [name,action] of [
  ['committed rotation',c=>c.$('rotate-right').onclick()]
 ])test(`late response preserves user work after ${name}`,async()=>{
  const c=await controller(),pending=c.start();action(c);const edited=c.read();c.respond(result);await pending;assert.deepEqual(c.read(),edited);
+});
+
+test('keyboard shortcuts cannot change the scene while startup keeps the editor hidden',async()=>{
+ const c=await controller(),before=c.read();c.$('studio').hidden=true;
+ c.key({key:'Delete',preventDefault(){},ctrlKey:false,metaKey:false});assert.deepEqual(c.read(),before);
 });
