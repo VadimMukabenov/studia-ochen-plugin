@@ -12,7 +12,8 @@
     document.getElementById('startup').hidden=true;
     document.getElementById('app-header').inert=false;
     document.getElementById('studio').hidden=false;
-  }catch{
+  }catch(error){
+    console.error('Editor startup failed',error);
     title.textContent='Не удалось загрузить редактор';
     status.textContent='Соединение прервалось или ответ занял слишком много времени. Нажмите «Повторить загрузку». Уже загруженные иллюстрации сохранены на этом устройстве.';
     document.getElementById('startup').dataset.state='error';

@@ -2,7 +2,7 @@ name: Publish editor demo
 on:
   push:
     branches: [main]
-    paths: ['web/**', 'online/**', 'tests/meaning-flow.test.cjs', 'tests/library-loading.test.cjs', 'tests/startup.test.cjs', '.github/workflows/pages.yml']
+    paths: ['web/**', 'online/**', 'tests/meaning-flow.test.cjs', 'tests/library-loading.test.cjs', 'tests/startup.test.cjs', 'tests/single-page.test.cjs', 'scripts/build-web.cjs', 'package*.json', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -20,8 +20,10 @@ jobs:
       artifact_name: ${{ env.PAGES_ARTIFACT_NAME }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - run: npm ci --ignore-scripts
+      - run: node scripts/build-web.cjs --check
       - name: Verify editor flow and public AI contract
-        run: node --test tests/meaning-flow.test.cjs tests/library-loading.test.cjs tests/startup.test.cjs online/tests.mjs
+        run: node --test tests/meaning-flow.test.cjs tests/library-loading.test.cjs tests/startup.test.cjs tests/single-page.test.cjs online/tests.mjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

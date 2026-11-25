@@ -10,7 +10,8 @@
     "build": "node scripts/build.cjs",
     "test:ui": "playwright test",
     "test:live": "python3 tests/model_smoke.py",
-    "package": "node scripts/package.cjs"
+    "package": "node scripts/package.cjs",
+    "build:web": "node scripts/build-web.cjs"
   },
   "devDependencies": {
     "@figma/plugin-typings": "1.143.0",
