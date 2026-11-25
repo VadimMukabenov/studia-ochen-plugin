@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-25",
+  "source_merge": "b7573eecdfc63edec5475603029e18dd12387de4",
+  "pull_request": "https://github.com/VadimMukabenov/studia-ochen-plugin/pull/4",
+  "node_tests": 49,
+  "worker_tests": 10,
+  "typescript": "passed",
+  "build": "passed",
+  "independent_review": "Important old-HTML keyboard finding fixed and re-reviewed; no remaining blockers",
+  "controlled_browser": {
+    "asset_failure": "one SVG returned503 on all3attempts; visible error/retry screen, hidden editor",
+    "failed_load_requests": 42,
+    "manual_recovery_network_requests": 1,
+    "recovered_cached_assets": 39,
+    "cached_reload_asset_requests": 0,
+    "legacy_html": "base15805bc HTML with currentJS renders; keyboard Delete removes phone and retains puzzle; console errors0",
+    "fields": {
+      "desktop": "white fields, inner focus ring, no textarea resize handle, consistent select arrow",
+      "narrow_layout_width": 375,
+      "horizontal_scroll_width": 375,
+      "focus_ring": "inset1px, fully inside textarea"
+    }
+  },
+  "public_browser": {
+    "url": "https://vadimmukabenov.github.io/studia-ochen-plugin/",
+    "fields": "verified full inset focus ring, resize none, custom select arrow",
+    "library_images": 10,
+    "broken_library_images": 0,
+    "manual_flow": "book/lamp/pen names ->3layouts -> S/L -> rotate -> SVG download",
+    "download": {
+      "paths": 105,
+      "images": 0,
+      "objects": 3,
+      "sha256": "bcbce8d91140b1b0bb4138382f771025788fe37ff229261d442b1cc9f50eaf97"
+    },
+    "live_ai": "upstream429 busy or shared free quota exhausted; prior composition preserved; not counted as successful AI run",
+    "network_limitation": "one existing tab timed out on main document; fresh original-URL tab loaded; application retries cannot fix a connection failure before HTML arrives"
+  },
+  "pull_requests": [
+    "https://github.com/VadimMukabenov/studia-ochen-plugin/pull/4",
+    "https://github.com/VadimMukabenov/studia-ochen-plugin/pull/5"
+  ],
+  "compressed_library": {
+    "bytes": 428549,
+    "sha256": "e3c929337c17d89390e14397fea5eacb97198f32067fdb17f6289814726a5be7",
+    "svg_count": 40,
+    "byte_identity_with_originals": "passed",
+    "cold_local_browser_asset_requests": 1,
+    "warm_local_browser_asset_requests": 0,
+    "production_http": 200,
+    "production_download_seconds": 36.689579,
+    "bundle_timeout_seconds": 60,
+    "overall_asset_timeout_seconds": 90
+  },
+  "pages_run": "https://github.com/VadimMukabenov/studia-ochen-plugin/actions/runs/45681389025"
+}
