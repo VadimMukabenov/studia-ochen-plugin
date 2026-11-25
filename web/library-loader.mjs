@@ -4,7 +4,7 @@ const failed=()=>new Error('Загрузка иллюстраций прерва
 
 // The originals are immutable. Cache only SVGs validated by the same parser as
 // the renderer; partial successes remain available after a network interruption.
-export async function loadLibrary(files,{baseURL='assets/',storage,onProgress=()=>{},timeoutMs=8000,totalTimeoutMs=90000,bundleURL,bundleTimeoutMs=60000,embedded}={}){
+export async function loadLibrary(files,{baseURL='assets/',storage,onProgress=()=>{},timeoutMs=8000,totalTimeoutMs=90000,bundleURL,bundleTimeoutMs=60000,embedded,concurrency=4}={}){
   if(!Array.isArray(files)||files.some(name=>!/^[-a-zA-Z0-9]+\.svg$/.test(name)))throw failed();
   files=[...new Set(files)];
   if(storage===undefined){try{storage=globalThis.localStorage;}catch{storage=null;}}
@@ -66,7 +66,7 @@ export async function loadLibrary(files,{baseURL='assets/',storage,onProgress=()
       const name=pending[cursor++];complete(name,await read(name));
     }
   }
-  const tasks=Array.from({length:Math.min(4,pending.length)},()=>worker());
+  const tasks=Array.from({length:Math.min(Math.max(1,Math.min(6,Number(concurrency)||4)),pending.length)},()=>worker());
   try{await Promise.all(tasks);if(stop.signal.aborted)throw failed();return assets;}
   catch(error){stop.abort();await Promise.allSettled(tasks);throw error;}
   finally{clearTimeout(deadline);}

@@ -47,3 +47,11 @@ test('keyboard shortcuts keep working with old HTML that has no studio id',async
  const c=await controller(),before=c.read();c.hideStudioId();
  c.key({key:'Delete',preventDefault(){},ctrlKey:false,metaKey:false});assert.equal(c.read().items.length,before.items.length-1);
 });
+
+test('visible startup shell blocks keyboard mutation until canvas becomes ready',async()=>{
+ const c=await controller(),before=c.read();c.$('studio').hidden=false;c.$('canvas-surface').inert=true;
+ for(const event of [{key:'Delete'},{key:'d',ctrlKey:true},{key:'ArrowRight'}])c.key({...event,preventDefault(){}});
+ assert.deepEqual(c.read(),before);
+ c.$('canvas-surface').inert=false;c.key({key:'Delete',preventDefault(){}});
+ assert.equal(c.read().items.length,before.items.length-1);
+});
