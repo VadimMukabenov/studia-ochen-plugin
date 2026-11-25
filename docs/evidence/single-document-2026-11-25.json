@@ -1,0 +1,65 @@
+{
+  "date": "2026-11-25",
+  "source_merge": "e859003c90cbfd820d06ed4f8ddc50f95f1542e6",
+  "pull_request": "https://github.com/VadimMukabenov/studia-ochen-plugin/pull/6",
+  "pages_run": "https://github.com/VadimMukabenov/studia-ochen-plugin/actions/runs/45685601666",
+  "pages_conclusion": "success",
+  "failure_reproduction": "External bootstrap.js returned HTTP503: initial static loader remained indefinitely. Same visible failure as user screenshot; user network cause itself was not observed.",
+  "change": "One generated HTML includes editor code, CSS, icons and all40 original SVGs; no separate startup resource required. Legacy files remain for previously cached HTML.",
+  "node_tests": 52,
+  "worker_tests": 10,
+  "typescript": "passed",
+  "plugin_build": "passed",
+  "generated_html_freshness": "passed",
+  "independent_review": "No Critical or Important findings; reviewer independently passed15 relevant tests and build freshness check.",
+  "controlled_browser": {
+    "fresh_origins": 3,
+    "denied_resources": "Every path except document / and fixture /health returned503. Existing bootstrap-only503 origin also recovered with new document.",
+    "requests_per_fresh_origin": [
+      "GET / ->200",
+      "GET /health ->200 (fixture, not real AI)"
+    ],
+    "external_startup_requests": 0,
+    "library_images_per_origin": 10,
+    "broken_images": 0,
+    "variants_per_origin": 3,
+    "flow": "S detail, background phone, peach palette, rotate, SVG; separate book/lamp/pen names build; diagonal, rotate, undo. Browser storage was fresh by origin."
+  },
+  "published_http": {
+    "url": "https://vadimmukabenov.github.io/studia-ochen-plugin/",
+    "status": 200,
+    "content_encoding": "gzip",
+    "transfer_bytes": 466211,
+    "decoded_bytes": 1711190,
+    "seconds": 46.620195,
+    "sha256": "3dd2ee9df604ded15ada020a2eb281445d4995b32fb8cf935db622344f7afef5",
+    "decoded_byte_identity_with_repo": true
+  },
+  "public_browser": {
+    "url": "https://vadimmukabenov.github.io/studia-ochen-plugin/",
+    "session": "existing own tab reloaded after successful deployment; existing saved scene restored",
+    "external_scripts": 0,
+    "embedded_library": true,
+    "library_images": 10,
+    "broken_images": 0,
+    "variants": 3,
+    "console_errors_or_warnings": 0,
+    "flow": "phone/puzzle names -> build -> S detail -> background role -> diagonal layout -> peach palette -> rotate -> undo -> redo -> actual SVG download",
+    "download": {
+      "paths": 212,
+      "objects": 2,
+      "images": 0,
+      "phone_source_node": "24:6990",
+      "phone_rotation_before": -6,
+      "phone_rotation_after": 9,
+      "sha256": "f5b88529e0425639419d66bff21ff07620a09af619e0283476b1f24fe318ccca",
+      "example": "examples/6-startup-check.svg"
+    },
+    "screenshot": "docs/editor-single-document.png"
+  },
+  "limitations": [
+    "A connection must still deliver the HTML; measured first download46.62sec on current slow connection. No universal browser/network or instant startup claim.",
+    "No new real AI request in this startup check. Latest actual AI result remains upstream429 from earlier25Nov; health200 is not proof of generation.",
+    "Ready-made offline ZIPv0.3.0 remains the separate22Nov historical release, not rebuilt here."
+  ]
+}
