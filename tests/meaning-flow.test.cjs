@@ -2,7 +2,7 @@ const test=require('node:test');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const vm=require('node:vm');
-const source=fs.readFileSync(require.resolve('../web/app.mjs'),'utf8').replace(/^import .*\n/,'').replace(/start\(\);\s*$/,'');
+const source=fs.readFileSync(require.resolve('../web/app.mjs'),'utf8').replace(/^import .*\n/gm,'').replace(/^export /gm,'');
 // Execute the real controller and event handlers. Only DOM rendering and the
 // external model response are replaced; scene operations and undo remain real.
 async function controller(){
