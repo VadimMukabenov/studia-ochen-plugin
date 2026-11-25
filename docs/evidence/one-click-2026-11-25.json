@@ -1,0 +1,66 @@
+{
+  "verified_date": "2026-11-25",
+  "editor": "https://vadimmukabenov.github.io/studia-ochen-plugin/",
+  "source_merge_sha": "d453abcbe79608e750698e5381e407d4ec2577bd",
+  "pull_request": 3,
+  "pages_run": 45675482003,
+  "pages_status": "success",
+  "query": "свидание с девушкой",
+  "live_result_keys": [
+    "flowers",
+    "wallet",
+    "phone",
+    "book"
+  ],
+  "model": "particle-ai/particle-1:free",
+  "assembly_clicks": 1,
+  "confirmation_buttons": 0,
+  "layouts": 3,
+  "rotation_degrees": 15,
+  "undo_restored_previous_scene": true,
+  "redo_restored_new_scene_and_rotation": true,
+  "tests": {
+    "node": 35,
+    "worker": 10,
+    "controller_regressions": 9,
+    "races_reproduced_before_fix": 6,
+    "typescript": "passed",
+    "build": "passed"
+  },
+  "review": "No remaining blocking issues after two timing issues were fixed.",
+  "browser": {
+    "desktop": [
+      1440,
+      1024
+    ],
+    "narrow_screenshot": [
+      65536,
+      4292542531
+    ],
+    "horizontal_overflow": false,
+    "console_warnings_errors": 0,
+    "initial_tab_network_failure": "Failed to fetch / ERR_NETWORK_CHANGED; final fresh tab on same URL passed.",
+    "published_library_http200": 40
+  },
+  "svg": {
+    "file": "../../examples/5-online-date.svg",
+    "sha256": "121c494eab0024795d3ee9b53f1a6d9885523db4ca5e963be51b24ec60e37927",
+    "paths": 426,
+    "objects": 4,
+    "images": 0
+  },
+  "controlled_response_cases": [
+    "upstream error preserves scene",
+    "uncertain result requires explicit choice",
+    "late result after committed rotation ignored",
+    "mode round trip ignored",
+    "query and engine edits restored to old values still invalidate",
+    "drag/scale/title edit before commit invalidates"
+  ],
+  "screenshot": "../editor-one-click.png",
+  "limitations": [
+    "Free quota is shared; model outputs vary.",
+    "The offline v0.3.0 archives remain the historical 2026-11-22 release.",
+    "Not a test of all browsers or networks."
+  ]
+}
