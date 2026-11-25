@@ -8,14 +8,16 @@
       new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('module timeout')),30000);})
     ]);
     clearTimeout(timer);
-    await app.start({onProgress:({loaded,total})=>{status.textContent=loaded?`Загружаем иллюстрации: ${loaded} из ${total}`:`Загружаем библиотеку (${total} иллюстраций)…`;}});
+    await app.start({onProgress:({loaded,total})=>{globalThis.sobranoStartup?.progress({loaded,total});status.textContent=loaded?`Загружаем иллюстрации: ${loaded} из ${total}`:`Загружаем библиотеку (${total} иллюстраций)…`;}});
     document.getElementById('startup').hidden=true;
     document.getElementById('app-header').inert=false;
     document.getElementById('studio').hidden=false;
+    for(const node of document.querySelectorAll?.('[data-startup-lock]')||[])node.inert=false;
   }catch(error){
     console.error('Editor startup failed',error);
     title.textContent='Не удалось загрузить редактор';
     status.textContent='Соединение прервалось или ответ занял слишком много времени. Нажмите «Повторить загрузку». Уже загруженные иллюстрации сохранены на этом устройстве.';
     document.getElementById('startup').dataset.state='error';
-  }finally{clearTimeout(timer);}
+    document.getElementById('startup-retry')?.removeAttribute?.('hidden');
+  }finally{clearTimeout(timer);globalThis.sobranoStartup?.finish();}
 })();
