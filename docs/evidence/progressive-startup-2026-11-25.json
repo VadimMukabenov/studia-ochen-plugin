@@ -1,0 +1,85 @@
+{
+  "date": "2026-11-25",
+  "source_main": "5b2ac49d18fdafa642c2a482e6d7dcc6008cf7dd",
+  "pull_request": "https://github.com/VadimMukabenov/studia-ochen-plugin/pull/7",
+  "pages_runs": [
+    "https://github.com/VadimMukabenov/studia-ochen-plugin/actions/runs/45688695396",
+    "https://github.com/VadimMukabenov/studia-ochen-plugin/actions/runs/45689081288"
+  ],
+  "pages": "both success",
+  "tests": {
+    "node": 56,
+    "worker": 10,
+    "typescript": "pass",
+    "plugin_build": "pass",
+    "generated_html": "pass",
+    "independent_review": "keyboard finding fixed with red-green regression, re-reviewed; restored-label follow-up independently checked; no blockers"
+  },
+  "network_measurements": {
+    "old_document": {
+      "status": 200,
+      "expected_transfer_bytes": 466211,
+      "received_bytes": 99929,
+      "timeout_seconds": 60.002308
+    },
+    "parallel_originals": {
+      "requests": 40,
+      "workers": 6,
+      "successful": 40,
+      "seconds": 8.231035435000194,
+      "method": "six curl subprocess workers, public unchanged SVGs, no browser cache"
+    },
+    "initial_document_pr7": {
+      "status": 200,
+      "gzip_bytes": 28112,
+      "seconds": 1.235448
+    },
+    "final_document": {
+      "status": 200,
+      "gzip_bytes": 28136,
+      "decoded_bytes": 125787,
+      "seconds": 1.248081,
+      "sha256": "00c50dce6f7bd6a6fc54f392c1869fa8fd4e1d51b28bfc906368815cf64be532",
+      "identical_to_repo": true
+    }
+  },
+  "controlled_browser": {
+    "fresh_origins": 2,
+    "partial_load": "12 actual SVGs completed, remaining responses deliberately held; workspace visible, progress12/40 inside canvas",
+    "interruption": "request deadlines exhausted -> error within canvas -> restore server -> retry -> ready with cached successes",
+    "resume": "separate fresh origin12/40 -> release responses ->40/40 -> ready, console0",
+    "narrow": {
+      "document_width": 360,
+      "scroll_width": 360,
+      "loading_panel_width": 332
+    },
+    "screenshot": "docs/startup-progress.png",
+    "error_screenshot": "docs/startup-progress-error.png"
+  },
+  "public_browser": {
+    "url": "https://vadimmukabenov.github.io/studia-ochen-plugin/",
+    "cache": "existing browser cache populated by preceding checks; not counted as cold browser timing",
+    "restored_label": "Восстановлено из браузера",
+    "external_scripts": 0,
+    "library_previews": 10,
+    "broken_images": 0,
+    "layouts": 3,
+    "flow": "Project -> built-in connection example -> S -> background phone -> mint palette -> rotate15deg -> undo -> redo -> real SVG download",
+    "console_errors_or_warnings": 0,
+    "svg": {
+      "paths": 212,
+      "groups": 2,
+      "images": 0,
+      "phone_source": "24:6990",
+      "phone_rotation": 15,
+      "sha256": "64a2943539427fa7b14570f128d6fae8574a6d35ee0116161aa01e0d6432316c",
+      "file": "examples/7-progressive-startup.svg"
+    },
+    "screenshot": "docs/editor-progressive-startup.png"
+  },
+  "remaining": [
+    "Latest real online AI request remains upstream429. No AI generation calls made during this startup correction.",
+    "Network timings above are separate document/assets measurements, not one end-to-end cold-browser timing or a guarantee for every machine.",
+    "OfflineZIPv0.3.0 remains historical22Nov release; no native Windows/macOS retest."
+  ]
+}
